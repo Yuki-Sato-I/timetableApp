@@ -1,0 +1,193 @@
+//
+//  CellViewController.swift
+//  newTableTimeApp
+//
+//  Created by 佐藤裕紀 on 2019/06/13.
+//  Copyright © 2019 Yuki Sato. All rights reserved.
+//
+
+import UIKit
+
+class CellViewController: UIViewController {
+    
+    //エンコーダー
+    let encoder = JSONEncoder()
+    //授業情報
+    struct ClassInfo: Codable{
+        var title:String = "登録されていません"
+        var teacher:String = "登録されていません"
+        var credit:Int = 0
+        var day:String = "Monday"
+        var year:String = "9999"
+        var faculty:String = "理工学部"
+        var specialty:Bool = true
+        var attendCount:Int = 0
+        var absentCount:Int = 0
+        var lateCount:Int = 0
+    }
+    
+    var classInfo = ClassInfo()
+
+    //ボタンのラベル名
+    var buttonLabelArray = ["出席", "欠席", "遅刻"]
+    //遷移しながら渡されるcell番号
+    var selectedNumber: Int = 0
+    
+    //出席回数
+    var attendCount: Int = 0
+    //欠席回数
+    var absentCount: Int = 0
+    //遅刻回数
+    var lateCount: Int = 0
+
+    @IBOutlet var titleLabel: UILabel!
+    @IBOutlet var titleContent: UILabel!
+    @IBOutlet var teacherLabel: UILabel!
+    @IBOutlet var teacherContent: UILabel!
+    @IBOutlet var creditLabel: UILabel!
+    @IBOutlet var creditContent: UILabel!
+    
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+
+        //すでに登録されていたらその授業の情報をのせる
+        if (UserDefaults.standard.object(forKey: String(selectedNumber)) != nil){
+            if let savedClassInfo = UserDefaults.standard.object(forKey: String(selectedNumber)) as? Data {
+                let decoder = JSONDecoder()
+                if let c = try? decoder.decode(ClassInfo.self, from: savedClassInfo) {
+                    classInfo = c
+                }
+            }
+        }
+        
+        attendCount = classInfo.attendCount
+        absentCount = classInfo.absentCount
+        lateCount = classInfo.lateCount
+        
+        titleContent.text = classInfo.title
+        teacherContent.text = classInfo.teacher
+        creditContent.text = String(classInfo.credit)
+
+ 
+        let screenWidth = self.view.frame.width
+        
+        for i in 0..<3 {
+            // UIButtonのインスタンスを作成する
+            let button = UIButton(type: UIButton.ButtonType.system)
+            // ボタンを押した時に実行するメソッドを指定
+            button.addTarget(self, action: #selector(buttonEvent(_:)), for: UIControl.Event.touchUpInside)
+            // ラベルを設定する
+            button.setTitle(buttonLabelArray[i], for: UIControl.State.normal)
+            
+            button.frame = CGRect(x: CGFloat(screenWidth/3 * CGFloat(i)), y: 300, width: screenWidth/3, height: 50)
+            button.backgroundColor = .red
+            // viewに追加する
+            self.view.addSubview(button)
+
+            
+            let label = UILabel()
+            label.frame = CGRect(x: CGFloat(screenWidth/3 * CGFloat(i)), y: 350, width: screenWidth/3, height: 100)
+            label.textAlignment = .center
+            //tag付け
+            label.tag = i + 100
+            label.backgroundColor = .blue
+            self.view.addSubview(label)
+        }
+        
+        for i in 0..<3 {
+            let label = self.view.viewWithTag(100+i) as! UILabel
+            if(i == 0){
+                label.text = String(classInfo.attendCount)
+            }else if(i == 1){
+                label.text = String(classInfo.absentCount)
+            }else{
+                label.text = String(classInfo.lateCount)
+            }
+        }
+        
+        
+    }
+    
+    @objc func buttonEvent(_ sender: UIButton) {
+        if (UserDefaults.standard.object(forKey: String(selectedNumber)) != nil){
+            
+            if let savedClassInfo = UserDefaults.standard.object(forKey: String(selectedNumber)) as? Data {
+                let decoder = JSONDecoder()
+                if let c = try? decoder.decode(ClassInfo.self, from: savedClassInfo) {
+                    classInfo = c
+                }
+            }
+            
+            if(sender.currentTitle == "出席"){
+                attendCount += 1
+                let label = self.view.viewWithTag(100) as! UILabel
+                label.text = String(attendCount)
+                classInfo.attendCount = attendCount
+            }else if(sender.currentTitle == "欠席"){
+                absentCount += 1
+                let label = self.view.viewWithTag(101) as! UILabel
+                label.text = String(absentCount)
+                classInfo.absentCount = absentCount
+            }else{
+                lateCount += 1
+                let label = self.view.viewWithTag(102) as! UILabel
+                label.text = String(lateCount)
+                classInfo.lateCount = lateCount
+            }
+            
+            
+            if let encoded = try? encoder.encode(classInfo) {
+                UserDefaults.standard.set(encoded, forKey: String(selectedNumber))
+            }
+            print("出席回数: \(attendCount) 欠席回数: \(absentCount) 遅刻回数: \(lateCount)")
+        }
+
+    }
+
+    //デバック用ボタン
+    @IBAction func debug(_ sender: Any) {
+        var classInfo = ClassInfo()
+        classInfo.title = "デバック科目"
+        classInfo.teacher = "佐藤"
+        classInfo.credit = 2
+        if let encoded = try? encoder.encode(classInfo) {
+            UserDefaults.standard.set(encoded, forKey: String(selectedNumber))
+        }
+    }
+    
+}
+
+//UILabelにボーダーラインを追加するための拡張
+extension UIView {
+    @IBInspectable var cornerRadius: CGFloat {
+        get {
+            return layer.cornerRadius
+        }
+        set {
+            layer.cornerRadius = newValue
+            layer.masksToBounds = newValue > 0
+        }
+    }
+    
+    @IBInspectable
+    var borderWidth: CGFloat {
+        get {
+            return self.layer.borderWidth
+        }
+        set {
+            self.layer.borderWidth = newValue
+        }
+    }
+    
+    @IBInspectable
+    var borderColor: UIColor? {
+        get {
+            return UIColor(cgColor: self.layer.borderColor!)
+        }
+        set {
+            self.layer.borderColor = newValue?.cgColor
+        }
+    }
+    
+}

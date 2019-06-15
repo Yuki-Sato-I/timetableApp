@@ -21,6 +21,7 @@
 		B61DA08522ACBE6B00C875D8 /* busy.json in Resources */ = {isa = PBXBuildFile; fileRef = B61DA08022ACBE6A00C875D8 /* busy.json */; };
 		B61DA08922ACC0F200C875D8 /* schedule.json in Resources */ = {isa = PBXBuildFile; fileRef = B61DA08822ACC0F200C875D8 /* schedule.json */; };
 		B61DA08B22ACC27E00C875D8 /* TimeTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B61DA08A22ACC27E00C875D8 /* TimeTableViewController.swift */; };
+		B6B1562222B28B7600287149 /* CellViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6B1562122B28B7600287149 /* CellViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -42,6 +43,7 @@
 		B61DA08022ACBE6A00C875D8 /* busy.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = busy.json; sourceTree = "<group>"; };
 		B61DA08822ACC0F200C875D8 /* schedule.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = schedule.json; sourceTree = "<group>"; };
 		B61DA08A22ACC27E00C875D8 /* TimeTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeTableViewController.swift; sourceTree = "<group>"; };
+		B6B1562122B28B7600287149 /* CellViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CellViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -103,6 +105,7 @@
 				B61DA08A22ACC27E00C875D8 /* TimeTableViewController.swift */,
 				B61DA05C22ABE5C400C875D8 /* ViewController.swift */,
 				B61DA07822AC00E600C875D8 /* StartViewController.swift */,
+				B6B1562122B28B7600287149 /* CellViewController.swift */,
 				B61DA05E22ABE5C400C875D8 /* Main.storyboard */,
 				B61DA07A22AC011700C875D8 /* start.mov */,
 				B61DA06122ABE5C500C875D8 /* Assets.xcassets */,
@@ -238,6 +241,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B6B1562222B28B7600287149 /* CellViewController.swift in Sources */,
 				B61DA07922AC00E600C875D8 /* StartViewController.swift in Sources */,
 				B61DA05D22ABE5C400C875D8 /* ViewController.swift in Sources */,
 				B61DA08B22ACC27E00C875D8 /* TimeTableViewController.swift in Sources */,
