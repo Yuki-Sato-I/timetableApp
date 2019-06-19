@@ -10,6 +10,12 @@ import UIKit
 
 class ConfigViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource, UITextFieldDelegate {
     
+    let alert: UIAlertController = UIAlertController(title: "未記入の項目があります", message: "全て入力してください", preferredStyle:  UIAlertController.Style.alert)
+    
+    let defaultAction: UIAlertAction = UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler:{
+        (action: UIAlertAction!) -> Void in
+        print("OK")
+    })
     /* 授業を選択しpickerを開いてから　textFieldを開いたときに、pickerは閉じていたい */
     
     @IBOutlet var label: UILabel!
@@ -24,6 +30,9 @@ class ConfigViewController: UIViewController, UIPickerViewDelegate, UIPickerView
     
     var toolbar: UIToolbar!
     var picker: UIPickerView = UIPickerView()
+    
+    var day = ""
+    var selectedNumber = 500//番号はあり得ないやつにしている
     
     //選んだ授業情報が入っている
     var classInfo = CellViewController.ClassInfo()
@@ -70,6 +79,7 @@ class ConfigViewController: UIViewController, UIPickerViewDelegate, UIPickerView
         super.viewDidLoad()
         
         self.title = "授業設定"
+        alert.addAction(defaultAction)
         
         label.textAlignment = .center
         label.center.x = self.view.center.x
@@ -131,7 +141,7 @@ class ConfigViewController: UIViewController, UIPickerViewDelegate, UIPickerView
             textFieldsAreEnabled(bool: true)
         }else{
             textFieldsAreEnabled(bool: false)
-            //textFieldたちにも自動で代入させる
+            //textFieldたちにも自動で代入させたい
         }
     }
     
@@ -163,12 +173,16 @@ class ConfigViewController: UIViewController, UIPickerViewDelegate, UIPickerView
             classInfo.title = classTextField.text!
             classInfo.teacher = teacherTextField.text!
             classInfo.credit = Int(creditTextField.text!)!
-            
+            classInfo.faculty = UserDefaults.standard.object(forKey: "userInfomation") as! String
+            classInfo.day = day
+            let encoder = JSONEncoder()
+            if let encoded = try? encoder.encode(classInfo) {
+                UserDefaults.standard.set(encoded, forKey: String(selectedNumber))
+            }
             print(classInfo)
+            self.navigationController?.popViewController(animated: true)
         }else{
-            
+            present(alert, animated: true, completion: nil)
         }
     }
-    
-    
 }

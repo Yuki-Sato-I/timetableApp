@@ -21,7 +21,7 @@ class StartViewController: UIViewController, UIPickerViewDelegate, UIPickerViewD
     })
     
     var pickerView: UIPickerView = UIPickerView()
-    let list = ["農学部", "理工学部", "教育学部", "人文社会学部", "総合科学研究科", "教育学研究科", "理工学研究科", "獣医学研究科", "連合農学研究科", "その他"]
+    let list = ["所属を選択してね", "農学部", "理工学部", "教育学部", "人文社会学部", "総合科学研究科", "教育学研究科", "理工学研究科", "獣医学研究科", "連合農学研究科", "その他"]
     
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
         return 1
