@@ -25,9 +25,12 @@ class CellViewController: UIViewController {
         var absentCount:Int = 0
         var lateCount:Int = 0
     }
-    
+    //初期化
     var classInfo = ClassInfo()
-
+    
+    //曜日ラベル
+    var dateLabelArray = ["月曜","火曜","水曜","木曜","金曜"]
+    var hourLabelArray = ["1コマ目","2コマ目","3コマ目","4コマ目","5コマ目","6コマ目"]
     //ボタンのラベル名
     var buttonLabelArray = ["出席", "欠席", "遅刻"]
     //遷移しながら渡されるcell番号
@@ -51,6 +54,7 @@ class CellViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        self.title = dateLabelArray[selectedNumber % 6 - 1] + hourLabelArray[selectedNumber / 6]
         //すでに登録されていたらその授業の情報をのせる
         if (UserDefaults.standard.object(forKey: String(selectedNumber)) != nil){
             if let savedClassInfo = UserDefaults.standard.object(forKey: String(selectedNumber)) as? Data {
@@ -154,6 +158,16 @@ class CellViewController: UIViewController {
         if let encoded = try? encoder.encode(classInfo) {
             UserDefaults.standard.set(encoded, forKey: String(selectedNumber))
         }
+    }
+    
+    //値渡す
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "configSegue"{
+            let configVc: ConfigViewController = segue.destination as! ConfigViewController
+            
+            configVc.classInfo = classInfo
+        }
+        
     }
     
 }
