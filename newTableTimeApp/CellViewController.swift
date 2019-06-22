@@ -18,18 +18,22 @@ class CellViewController: UIViewController {
         var teacher:String = "登録されていません"
         var credit:Int = 0
         var day:String = "Monday"
-        var year:String = "9999"
+        //var year:String = "9999"
         var faculty:String = "理工学部"
         var specialty:Bool = true
         var attendCount:Int = 0
         var absentCount:Int = 0
         var lateCount:Int = 0
     }
-    
+    //初期化
     var classInfo = ClassInfo()
-
+    
+    //曜日ラベル
+    let dateLabelArray = ["月曜","火曜","水曜","木曜","金曜"]
+    let dateLabelEnglishArray = ["Monday","Tuesday","Wednesday","Thursday","Friday"]
+    let hourLabelArray = ["1コマ目","2コマ目","3コマ目","4コマ目","5コマ目","6コマ目"]
     //ボタンのラベル名
-    var buttonLabelArray = ["出席", "欠席", "遅刻"]
+    let buttonLabelArray = ["出席", "欠席", "遅刻"]
     //遷移しながら渡されるcell番号
     var selectedNumber: Int = 0
     
@@ -51,6 +55,7 @@ class CellViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        self.title = dateLabelArray[selectedNumber % 6 - 1] + hourLabelArray[selectedNumber / 6]
         //すでに登録されていたらその授業の情報をのせる
         if (UserDefaults.standard.object(forKey: String(selectedNumber)) != nil){
             if let savedClassInfo = UserDefaults.standard.object(forKey: String(selectedNumber)) as? Data {
@@ -146,14 +151,35 @@ class CellViewController: UIViewController {
     }
 
     //デバック用ボタン
-    @IBAction func debug(_ sender: Any) {
-        var classInfo = ClassInfo()
-        classInfo.title = "デバック科目"
-        classInfo.teacher = "佐藤"
-        classInfo.credit = 2
-        if let encoded = try? encoder.encode(classInfo) {
-            UserDefaults.standard.set(encoded, forKey: String(selectedNumber))
+    //
+    //@IBAction func debug(_ sender: Any) {
+    //    var classInfo = ClassInfo()
+    //    classInfo.title = "デバック科目"
+    //    classInfo.teacher = "佐藤"
+    //    classInfo.credit = 2
+    //    if let encoded = try? encoder.encode(classInfo) {
+    //        UserDefaults.standard.set(encoded, forKey: String(selectedNumber))
+    //    }
+    //}
+
+    
+    //値渡す
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "configSegue"{
+            let configVc: ConfigViewController = segue.destination as! ConfigViewController
+            
+            //configVc.classInfo = classInfo
+            configVc.day = dateLabelEnglishArray[selectedNumber % 6 - 1]
+            configVc.selectedNumber = selectedNumber
         }
+        
+    }
+    
+    //戻ってきたときの画面リロード
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        loadView()
+        viewDidLoad()
     }
     
 }
