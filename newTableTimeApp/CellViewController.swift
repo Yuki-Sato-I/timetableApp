@@ -18,7 +18,7 @@ class CellViewController: UIViewController {
         var teacher:String = "登録されていません"
         var credit:Int = 0
         var day:String = "Monday"
-        var year:String = "9999"
+        //var year:String = "9999"
         var faculty:String = "理工学部"
         var specialty:Bool = true
         var attendCount:Int = 0
@@ -168,7 +168,7 @@ class CellViewController: UIViewController {
         if segue.identifier == "configSegue"{
             let configVc: ConfigViewController = segue.destination as! ConfigViewController
             
-            configVc.classInfo = classInfo
+            //configVc.classInfo = classInfo
             configVc.day = dateLabelEnglishArray[selectedNumber % 6 - 1]
             configVc.selectedNumber = selectedNumber
         }

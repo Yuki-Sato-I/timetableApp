@@ -92,7 +92,7 @@ class StartViewController: UIViewController, UIPickerViewDelegate, UIPickerViewD
         if identifier == "startSegue" {
             if (textField.text != "所属を選択してね"){
                 player.pause()
-                UserDefaults.standard.set(textField.text, forKey: "userInfomation")
+                UserDefaults.standard.set(textField.text, forKey: "userInformation")
                 return true
             }
         }

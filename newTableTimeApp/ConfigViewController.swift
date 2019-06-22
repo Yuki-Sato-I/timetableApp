@@ -31,21 +31,30 @@ class ConfigViewController: UIViewController, UIPickerViewDelegate, UIPickerView
     var toolbar: UIToolbar!
     var picker: UIPickerView = UIPickerView()
     
+    /* 曜日 */
     var day = ""
+    /* 6で割って1を足すと何コマ目かがわかる */
     var selectedNumber = 500//番号はあり得ないやつにしている
-    
-    //選んだ授業情報が入っている
-    var classInfo = CellViewController.ClassInfo()
-    
+    /* 自分の学部 */
+    let faculty = UserDefaults.standard.object(forKey: "userInformation") ?? "その他"
+
+    struct Information: Codable{
+        var id: Int = -100
+        var title:String = "授業を選択してください"
+        var teacher:String = "登録されていません"
+        var credit:Int = 0
+        var day:String = "Monday"
+        var faculty:String = "理工学部"
+    }
     //重複タップ用
     var isTapped  = false
     
     let screenSize = UIScreen.main.bounds.size
-    //デバック用リスト
-    let list = ["授業を選択してください", "1", "2", "3", "4", "5", "6", "7", "8", "9", "自分で登録する"]
-    let credit = ["0", "1", "2", "3", "4"]
+    //授業リスト
+    var list:[Information] = [Information(), Information(id: 9999999999, title: "自分で登録する", teacher: "登録されていません", credit: 0, day: "Monday", faculty: "理工学部")]
     
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
+        list.sort{ $0.id < $1.id }
         return 1
     }
     
@@ -54,11 +63,26 @@ class ConfigViewController: UIViewController, UIPickerViewDelegate, UIPickerView
     }
     
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        return list[row]
+        return list[row].title
     }
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        self.label.text = list[row]
+        self.label.text = list[row].title
+        if(label.text == "自分で登録する"){
+            textFieldsAreEnabled(bool: true)
+            classTextField.text = ""
+            teacherTextField.text = ""
+            creditTextField.text = ""
+        }else{
+            textFieldsAreEnabled(bool: false)
+            if(label.text != "授業を選択してください"){
+                classTextField.text = list[row].title
+                teacherTextField.text = list[row].teacher
+                creditTextField.text = String(list[row].credit)
+            }
+        }
+        
+        
     }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
@@ -73,11 +97,14 @@ class ConfigViewController: UIViewController, UIPickerViewDelegate, UIPickerView
         teacherTextField.resignFirstResponder()
         creditTextField.resignFirstResponder()
     }
-    
+    override func viewWillAppear(_ animated: Bool) {
+        getJson()
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        //getJson()
+        //list.sort{ $0.id < $1.id }
         self.title = "授業設定"
         alert.addAction(defaultAction)
         
@@ -93,7 +120,7 @@ class ConfigViewController: UIViewController, UIPickerViewDelegate, UIPickerView
         creditTextField.keyboardType = UIKeyboardType.numberPad
         
         textFieldsAreEnabled(bool: false)
-
+        
     }
     
     @objc func tap(gestureReconizer: UITapGestureRecognizer) {
@@ -137,12 +164,6 @@ class ConfigViewController: UIViewController, UIPickerViewDelegate, UIPickerView
             }
             isTapped = false
         }
-        if(label.text == "自分で登録する"){
-            textFieldsAreEnabled(bool: true)
-        }else{
-            textFieldsAreEnabled(bool: false)
-            //textFieldたちにも自動で代入させたい
-        }
     }
     
     //trueならtextFieldの有効化,
@@ -169,12 +190,16 @@ class ConfigViewController: UIViewController, UIPickerViewDelegate, UIPickerView
     
     @IBAction func register(_ sender: Any) {
         if(classTextField.text != "" && teacherTextField.text != "" && creditTextField.text != ""){
-            
-            classInfo.title = classTextField.text!
-            classInfo.teacher = teacherTextField.text!
-            classInfo.credit = Int(creditTextField.text!)!
-            classInfo.faculty = UserDefaults.standard.object(forKey: "userInfomation") as! String
-            classInfo.day = day
+            let classInfo = CellViewController.ClassInfo(title: classTextField.text!,
+                                                         teacher: teacherTextField.text!,
+                                                         credit: Int(creditTextField.text!)!,
+                                                         day: day,
+                                                         faculty: UserDefaults.standard.object(forKey: "userInformation") as! String,
+                                                         specialty: true,
+                                                         attendCount: 0,
+                                                         absentCount: 0,
+                                                         lateCount: 0)
+
             let encoder = JSONEncoder()
             if let encoded = try? encoder.encode(classInfo) {
                 UserDefaults.standard.set(encoded, forKey: String(selectedNumber))
@@ -183,6 +208,42 @@ class ConfigViewController: UIViewController, UIPickerViewDelegate, UIPickerView
             self.navigationController?.popViewController(animated: true)
         }else{
             present(alert, animated: true, completion: nil)
+        }
+    }
+    
+    func getJson(){
+        let urlString = "http://localhost:3000/apis/show/\(day)/\(selectedNumber/6 + 1)/\(faculty)"
+        
+        //本番用
+        //let urlString = "https://qiita.com/api/v2/items"
+
+        let encodeUrlString: String = urlString.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!
+        guard let url = URLComponents(string: encodeUrlString) else {return}
+        let task = URLSession.shared.dataTask(with: url.url!) {(data, response, error) in
+
+            guard let _data = data else { return }
+            // JSONデコード
+            do {
+                let classInformation = try JSONDecoder().decode([Information].self, from: _data)
+                for row in classInformation {
+                    print("title:\(row.title) teacher:\(row.teacher) credit:\(row.credit)")
+                }
+                //print(classInformation)
+                self.informationIntoList(informationArray: classInformation)
+                print("-------------")
+                print(self.list)
+                print("-------------")
+            } catch {
+                print(error.localizedDescription)
+            }
+        }
+        task.resume()
+    }
+    
+    //listに授業情報を入れる
+    func informationIntoList(informationArray: Array<Information>){
+        for info in informationArray{
+            list += [info]
         }
     }
 }
