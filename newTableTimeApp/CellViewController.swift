@@ -8,13 +8,13 @@
 
 import UIKit
 
-class CellViewController: UIViewController {
-    
+class CellViewController: UIViewController, AlertHelper {
+
     //エンコーダー
     let encoder = JSONEncoder()
     //授業情報
     struct ClassInfo: Codable{
-        var id:Int = -999
+        var id:Int = -1000
         var title:String = "登録されていません"
         var teacher:String = "登録されていません"
         var credit:Int = 0
@@ -51,10 +51,11 @@ class CellViewController: UIViewController {
     @IBOutlet var creditLabel: UILabel!
     @IBOutlet var creditContent: UILabel!
     
+    @IBOutlet var classEvaluation: UIButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         self.title = dateLabelArray[selectedNumber % 6 - 1] + hourLabelArray[selectedNumber / 6]
         //すでに登録されていたらその授業の情報をのせる
         if (UserDefaults.standard.object(forKey: String(selectedNumber)) != nil){
@@ -90,7 +91,6 @@ class CellViewController: UIViewController {
             // viewに追加する
             self.view.addSubview(button)
 
-            
             let label = UILabel()
             label.frame = CGRect(x: CGFloat(screenWidth/3 * CGFloat(i)), y: 350, width: screenWidth/3, height: 100)
             label.textAlignment = .center
@@ -159,7 +159,6 @@ class CellViewController: UIViewController {
             configVc.day = dateLabelEnglishArray[selectedNumber % 6 - 1]
             configVc.selectedNumber = selectedNumber
         }
-        
     }
     
     //戻ってきたときの画面リロード
@@ -167,6 +166,14 @@ class CellViewController: UIViewController {
         super.viewWillAppear(animated)
         loadView()
         viewDidLoad()
+    }
+    
+    @IBAction func goToCommentPage(_ sender: Any) {
+        if(classInfo.id == -999){
+            self.makeAndShowAlert(errorTitle: "エラー", errorMessage: "この授業は自分で入力したものです.", viewController: self)
+        }else if(classInfo.id == -1000){
+            self.makeAndShowAlert(errorTitle: "エラー", errorMessage: "まだ授業を登録していません.", viewController: self)
+        }
     }
     
 }

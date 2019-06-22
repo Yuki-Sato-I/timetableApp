@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		AC26BBD2C73ECEBCA93EA1F6 /* Pods_newTableTimeApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0892447B13629D350918F328 /* Pods_newTableTimeApp.framework */; };
+		B61585C922BE607B009FFA0E /* CommentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B61585C822BE607B009FFA0E /* CommentViewController.swift */; };
+		B61585CB22BE6C1D009FFA0E /* Helper.swift in Sources */ = {isa = PBXBuildFile; fileRef = B61585CA22BE6C1D009FFA0E /* Helper.swift */; };
 		B61DA05B22ABE5C300C875D8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B61DA05A22ABE5C300C875D8 /* AppDelegate.swift */; };
 		B61DA05D22ABE5C400C875D8 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B61DA05C22ABE5C400C875D8 /* ViewController.swift */; };
 		B61DA06022ABE5C400C875D8 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B61DA05E22ABE5C400C875D8 /* Main.storyboard */; };
@@ -29,6 +31,8 @@
 		0892447B13629D350918F328 /* Pods_newTableTimeApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_newTableTimeApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		84B8C5CCED2FE88224E7D045 /* Pods-newTableTimeApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-newTableTimeApp.debug.xcconfig"; path = "Target Support Files/Pods-newTableTimeApp/Pods-newTableTimeApp.debug.xcconfig"; sourceTree = "<group>"; };
 		9D02FB453E60D61DB330DC7C /* Pods-newTableTimeApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-newTableTimeApp.release.xcconfig"; path = "Target Support Files/Pods-newTableTimeApp/Pods-newTableTimeApp.release.xcconfig"; sourceTree = "<group>"; };
+		B61585C822BE607B009FFA0E /* CommentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentViewController.swift; sourceTree = "<group>"; };
+		B61585CA22BE6C1D009FFA0E /* Helper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Helper.swift; sourceTree = "<group>"; };
 		B61DA05722ABE5C300C875D8 /* newTableTimeApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = newTableTimeApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B61DA05A22ABE5C300C875D8 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B61DA05C22ABE5C400C875D8 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -109,6 +113,8 @@
 				B61DA07822AC00E600C875D8 /* StartViewController.swift */,
 				B6B1562122B28B7600287149 /* CellViewController.swift */,
 				B63EB36222B6179400960DF9 /* ConfigViewController.swift */,
+				B61585C822BE607B009FFA0E /* CommentViewController.swift */,
+				B61585CA22BE6C1D009FFA0E /* Helper.swift */,
 				B61DA05E22ABE5C400C875D8 /* Main.storyboard */,
 				B61DA07A22AC011700C875D8 /* start.mov */,
 				B61DA06122ABE5C500C875D8 /* Assets.xcassets */,
@@ -244,12 +250,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B61585C922BE607B009FFA0E /* CommentViewController.swift in Sources */,
 				B6B1562222B28B7600287149 /* CellViewController.swift in Sources */,
 				B61DA07922AC00E600C875D8 /* StartViewController.swift in Sources */,
 				B63EB36322B6179400960DF9 /* ConfigViewController.swift in Sources */,
 				B61DA05D22ABE5C400C875D8 /* ViewController.swift in Sources */,
 				B61DA08B22ACC27E00C875D8 /* TimeTableViewController.swift in Sources */,
 				B61DA05B22ABE5C300C875D8 /* AppDelegate.swift in Sources */,
+				B61585CB22BE6C1D009FFA0E /* Helper.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

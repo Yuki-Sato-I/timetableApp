@@ -263,6 +263,15 @@
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jAp-XW-Yb9">
+                                <rect key="frame" x="156" y="486" width="62" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="授業評価"/>
+                                <connections>
+                                    <action selector="goToCommentPage:" destination="x0v-kc-nsO" eventType="touchUpInside" id="MpT-CX-XGG"/>
+                                    <segue destination="bdI-qK-xHE" kind="push" id="2A9-FX-NI4"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="7pO-RF-88Y"/>
@@ -275,6 +284,7 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="classEvaluation" destination="jAp-XW-Yb9" id="F5y-Od-R9Q"/>
                         <outlet property="creditContent" destination="x8e-LA-b37" id="rg2-64-f4j"/>
                         <outlet property="creditLabel" destination="9bV-4X-WOj" id="TK4-uQ-ROO"/>
                         <outlet property="teacherContent" destination="LAr-oR-9mv" id="s8a-Ld-GX8"/>
@@ -286,6 +296,22 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="99v-xy-9h0" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="3348" y="107"/>
+        </scene>
+        <!--Comment View Controller-->
+        <scene sceneID="sEr-gr-yqa">
+            <objects>
+                <viewController id="bdI-qK-xHE" customClass="CommentViewController" customModule="newTableTimeApp" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="6C2-mc-BCK">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <viewLayoutGuide key="safeArea" id="ONq-5W-758"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="QOF-Ck-r7b"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ekt-DT-8Mx" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3348" y="847"/>
         </scene>
         <!--Config View Controller-->
         <scene sceneID="V8l-fK-vNb">

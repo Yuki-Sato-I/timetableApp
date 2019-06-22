@@ -8,14 +8,7 @@
 
 import UIKit
 
-class ConfigViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource, UITextFieldDelegate {
-    
-    let alert: UIAlertController = UIAlertController(title: "未記入の項目があります", message: "全て入力してください", preferredStyle:  UIAlertController.Style.alert)
-    
-    let defaultAction: UIAlertAction = UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler:{
-        (action: UIAlertAction!) -> Void in
-        print("OK")
-    })
+class ConfigViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource, UITextFieldDelegate, AlertHelper {
     
     @IBOutlet var label: UILabel!
     @IBOutlet var vi: UIView!
@@ -111,7 +104,6 @@ class ConfigViewController: UIViewController, UIPickerViewDelegate, UIPickerView
         super.viewDidLoad()
         
         self.title = "授業設定"
-        alert.addAction(defaultAction)
         
         label.textAlignment = .center
         label.center.x = self.view.center.x
@@ -189,7 +181,7 @@ class ConfigViewController: UIViewController, UIPickerViewDelegate, UIPickerView
             print(classInfo)
             self.navigationController?.popViewController(animated: true)
         }else{
-            present(alert, animated: true, completion: nil)
+            self.makeAndShowAlert(errorTitle: "未記入の項目があります", errorMessage: "全て入力してください", viewController: self)
         }
     }
     
@@ -199,7 +191,7 @@ class ConfigViewController: UIViewController, UIPickerViewDelegate, UIPickerView
         let urlString = "http://localhost:3000/apis/show/\(day)/\(selectedNumber/6 + 1)/\(faculty)"
         
         //本番用
-        //let urlString = "https://qiita.com/api/v2/items"
+        //let urlString = ""
 
         let encodeUrlString: String = urlString.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!
         guard let url = URLComponents(string: encodeUrlString) else {return}
