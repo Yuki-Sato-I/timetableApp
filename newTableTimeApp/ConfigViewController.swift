@@ -16,7 +16,6 @@ class ConfigViewController: UIViewController, UIPickerViewDelegate, UIPickerView
         (action: UIAlertAction!) -> Void in
         print("OK")
     })
-    /* 授業を選択しpickerを開いてから　textFieldを開いたときに、pickerは閉じていたい */
     
     @IBOutlet var label: UILabel!
     @IBOutlet var vi: UIView!
@@ -48,7 +47,7 @@ class ConfigViewController: UIViewController, UIPickerViewDelegate, UIPickerView
     }
     //重複タップ用
     var isTapped  = false
-    
+    //スクリーンの大きさ
     let screenSize = UIScreen.main.bounds.size
     //授業リスト
     var list:[Information] = [Information(), Information(id: 9999999999, title: "自分で登録する", teacher: "登録されていません", credit: 0, day: "Monday", faculty: "理工学部")]
@@ -81,14 +80,17 @@ class ConfigViewController: UIViewController, UIPickerViewDelegate, UIPickerView
                 creditTextField.text = String(list[row].credit)
             }
         }
-        
-        
     }
     
+    //returnが押された時キーボードを閉じる
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        // キーボードを閉じる
         textField.resignFirstResponder()
         return true
+    }
+    //pickerを開いてから,textFieldを開いたときに,pickerは閉じる
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        isTapped = false
+        closePicker()
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -103,8 +105,7 @@ class ConfigViewController: UIViewController, UIPickerViewDelegate, UIPickerView
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        //getJson()
-        //list.sort{ $0.id < $1.id }
+        
         self.title = "授業設定"
         alert.addAction(defaultAction)
         
@@ -121,6 +122,25 @@ class ConfigViewController: UIViewController, UIPickerViewDelegate, UIPickerView
         
         textFieldsAreEnabled(bool: false)
         
+        /* pickerの作成 */
+        picker.frame = CGRect(x: 0, y: 0, width: UIScreen.main.bounds.size.width, height: picker.bounds.size.height)
+        picker.backgroundColor = UIColor(red: 204/255, green: 204/255, blue: 204/255, alpha: 1)//薄いグレー
+        
+        vi.frame = picker.bounds
+        vi.backgroundColor = .white
+        vi.addSubview(picker)
+        
+        toolbar = UIToolbar(frame: CGRect(x: 0, y: 0, width: 0, height: 35))
+        let doneItem = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(ConfigViewController.done))
+        toolbar.setItems([doneItem], animated: true)
+        toolbar.isUserInteractionEnabled = true
+        toolbar.sizeToFit()
+        
+        vi.addSubview(toolbar)
+        vi.frame.origin.y = screenSize.height
+        view.addSubview(vi)
+        
+        
     }
     
     @objc func tap(gestureReconizer: UITapGestureRecognizer) {
@@ -130,27 +150,7 @@ class ConfigViewController: UIViewController, UIPickerViewDelegate, UIPickerView
         picker.showsSelectionIndicator = true
         /*重複タップ禁止*/
         if(!isTapped){
-        
-            picker.frame = CGRect(x: 0, y: 0, width: UIScreen.main.bounds.size.width, height: picker.bounds.size.height)
-            picker.backgroundColor = UIColor(red: 204/255, green: 204/255, blue: 204/255, alpha: 1)//薄いグレー
-        
-            vi.frame = picker.bounds
-            vi.backgroundColor = .white
-            vi.addSubview(picker)
-        
-            toolbar = UIToolbar(frame: CGRect(x: 0, y: 0, width: 0, height: 35))
-            let doneItem = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(ConfigViewController.done))
-            toolbar.setItems([doneItem], animated: true)
-            toolbar.isUserInteractionEnabled = true
-            toolbar.sizeToFit()
-        
-            vi.addSubview(toolbar)
-            view.addSubview(vi)
-        
-            vi.frame.origin.y = screenSize.height
-            UIView.animate(withDuration: 0.3) {
-                self.vi.frame.origin.y = self.screenSize.height - self.vi.bounds.size.height
-            }
+            openPicker()
             isTapped = true
         }
     }
@@ -159,35 +159,12 @@ class ConfigViewController: UIViewController, UIPickerViewDelegate, UIPickerView
         self.label.endEditing(true)
         
         if(isTapped){
-            UIView.animate(withDuration: 0.3) {
-                self.vi.frame.origin.y += self.vi.bounds.size.height
-            }
+            closePicker()
             isTapped = false
         }
     }
     
-    //trueならtextFieldの有効化,
-    func textFieldsAreEnabled(bool: Bool){
-        if(bool){
-            classTextField.isUserInteractionEnabled = true
-            teacherTextField.isUserInteractionEnabled = true
-            creditTextField.isUserInteractionEnabled = true
-            classTextField.backgroundColor = .white
-            teacherTextField.backgroundColor = .white
-            creditTextField.backgroundColor = .white
-        }else{
-            classTextField.isUserInteractionEnabled = false
-            teacherTextField.isUserInteractionEnabled = false
-            creditTextField.isUserInteractionEnabled = false
-            classTextField.text = ""
-            teacherTextField.text = ""
-            creditTextField.text = ""
-            classTextField.backgroundColor = .lightGray
-            teacherTextField.backgroundColor = .lightGray
-            creditTextField.backgroundColor = .lightGray
-        }
-    }
-    
+    //授業を登録する
     @IBAction func register(_ sender: Any) {
         if(classTextField.text != "" && teacherTextField.text != "" && creditTextField.text != ""){
             let classInfo = CellViewController.ClassInfo(title: classTextField.text!,
@@ -211,7 +188,9 @@ class ConfigViewController: UIViewController, UIPickerViewDelegate, UIPickerView
         }
     }
     
+    //apiを叩いて該当する授業を取得する
     func getJson(){
+        //デバック用
         let urlString = "http://localhost:3000/apis/show/\(day)/\(selectedNumber/6 + 1)/\(faculty)"
         
         //本番用
@@ -240,10 +219,45 @@ class ConfigViewController: UIViewController, UIPickerViewDelegate, UIPickerView
         task.resume()
     }
     
+    //trueならtextFieldの有効化,falseなら無効化
+    func textFieldsAreEnabled(bool: Bool){
+        if(bool){
+            classTextField.isUserInteractionEnabled = true
+            teacherTextField.isUserInteractionEnabled = true
+            creditTextField.isUserInteractionEnabled = true
+            classTextField.backgroundColor = .white
+            teacherTextField.backgroundColor = .white
+            creditTextField.backgroundColor = .white
+        }else{
+            classTextField.isUserInteractionEnabled = false
+            teacherTextField.isUserInteractionEnabled = false
+            creditTextField.isUserInteractionEnabled = false
+            classTextField.text = ""
+            teacherTextField.text = ""
+            creditTextField.text = ""
+            classTextField.backgroundColor = .lightGray
+            teacherTextField.backgroundColor = .lightGray
+            creditTextField.backgroundColor = .lightGray
+        }
+    }
+    
     //listに授業情報を入れる
     func informationIntoList(informationArray: Array<Information>){
         for info in informationArray{
             list += [info]
+        }
+    }
+    
+    //pickerを閉じる
+    func closePicker(){
+        UIView.animate(withDuration: 0.3) {
+            self.vi.frame.origin.y += self.vi.bounds.size.height
+        }
+    }
+    //pickerを開く
+    func openPicker(){
+        UIView.animate(withDuration: 0.3) {
+            self.vi.frame.origin.y = self.screenSize.height - self.vi.bounds.size.height
         }
     }
 }
