@@ -14,11 +14,11 @@ class CellViewController: UIViewController {
     let encoder = JSONEncoder()
     //授業情報
     struct ClassInfo: Codable{
+        var id:Int = -999
         var title:String = "登録されていません"
         var teacher:String = "登録されていません"
         var credit:Int = 0
         var day:String = "Monday"
-        //var year:String = "9999"
         var faculty:String = "理工学部"
         var specialty:Bool = true
         var attendCount:Int = 0
@@ -149,19 +149,6 @@ class CellViewController: UIViewController {
         }
 
     }
-
-    //デバック用ボタン
-    //
-    //@IBAction func debug(_ sender: Any) {
-    //    var classInfo = ClassInfo()
-    //    classInfo.title = "デバック科目"
-    //    classInfo.teacher = "佐藤"
-    //    classInfo.credit = 2
-    //    if let encoded = try? encoder.encode(classInfo) {
-    //        UserDefaults.standard.set(encoded, forKey: String(selectedNumber))
-    //    }
-    //}
-
     
     //値渡す
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

@@ -30,6 +30,8 @@ class ConfigViewController: UIViewController, UIPickerViewDelegate, UIPickerView
     var toolbar: UIToolbar!
     var picker: UIPickerView = UIPickerView()
     
+    /* データベースの授業かどうか */
+    var id:Int = -999
     /* 曜日 */
     var day = ""
     /* 6で割って1を足すと何コマ目かがわかる */
@@ -38,7 +40,7 @@ class ConfigViewController: UIViewController, UIPickerViewDelegate, UIPickerView
     let faculty = UserDefaults.standard.object(forKey: "userInformation") ?? "その他"
 
     struct Information: Codable{
-        var id: Int = -100
+        var id: Int = -1
         var title:String = "授業を選択してください"
         var teacher:String = "登録されていません"
         var credit:Int = 0
@@ -72,9 +74,11 @@ class ConfigViewController: UIViewController, UIPickerViewDelegate, UIPickerView
             classTextField.text = ""
             teacherTextField.text = ""
             creditTextField.text = ""
+            id = -999
         }else{
             textFieldsAreEnabled(bool: false)
             if(label.text != "授業を選択してください"){
+                id = list[row].id
                 classTextField.text = list[row].title
                 teacherTextField.text = list[row].teacher
                 creditTextField.text = String(list[row].credit)
@@ -167,7 +171,8 @@ class ConfigViewController: UIViewController, UIPickerViewDelegate, UIPickerView
     //授業を登録する
     @IBAction func register(_ sender: Any) {
         if(classTextField.text != "" && teacherTextField.text != "" && creditTextField.text != ""){
-            let classInfo = CellViewController.ClassInfo(title: classTextField.text!,
+            let classInfo = CellViewController.ClassInfo(id: id,
+                                                         title: classTextField.text!,
                                                          teacher: teacherTextField.text!,
                                                          credit: Int(creditTextField.text!)!,
                                                          day: day,
