@@ -7,4 +7,16 @@ target 'newTableTimeApp' do
 
   # Pods for newTableTimeApp
   pod 'lottie-ios'
+  pod 'Cosmos'
 end
+
+post_install do | installer |
+  require 'fileutils'
+  
+  #Pods-acknowledgements.plist下記の場所に移動（2015/10/15）
+  FileUtils.cp_r('Pods/Target Support Files/Pods-newTableTimeApp/Pods-newTableTimeApp-Acknowledgements.plist', 'newTableTimeApp/Settings.bundle/Acknowledgements.plist', :remove_destination => true)
+  
+  # エラー
+  #FileUtils.cp_r('Pods/Pods-acknowledgements.plist', 'newTableTimeApp/Settings.bundle/Acknowledgements.plist', :remove_destination => true)
+  
+  end

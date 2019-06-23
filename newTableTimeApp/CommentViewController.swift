@@ -18,11 +18,15 @@ class CommentViewController: UIViewController, UITableViewDelegate, UITableViewD
     //評価が入る
     struct Evaluation: Codable{
         var id:Int = 0
+        var title:String = ""
         var content:String = ""
-        var star:Int = 0
+        var user:String = ""
+        var star:Double = 0.0
+        var permission:Bool = false
     }
     
     var items = [Evaluation]()
+    var selectedItem:Evaluation!
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return items.count
@@ -31,9 +35,23 @@ class CommentViewController: UIViewController, UITableViewDelegate, UITableViewD
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = UITableViewCell(style: .value1, reuseIdentifier: nil)
         
-        cell.textLabel!.text = self.items[indexPath.row].content
-        cell.detailTextLabel!.text = String(self.items[indexPath.row].star)//星の個数を入れる
+        cell.textLabel!.text = self.items[indexPath.row].title
+        //cell.detailTextLabel!.text = String(self.items[indexPath.row].star)//星の個数を入れる
         return cell
+    }
+    
+    // cellが押されたときに呼ばれる関数
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+        selectedItem = items[indexPath.row]
+        performSegue(withIdentifier: "TableViewCellSegue", sender: nil)
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "TableViewCellSegue" {
+            let vc = segue.destination as! CommentCellViewController
+            vc.evaluation = selectedItem
+        }
     }
     
     override func viewDidLoad() {
@@ -59,9 +77,6 @@ class CommentViewController: UIViewController, UITableViewDelegate, UITableViewD
             // JSONデコード
             do {
                 let evaluations = try JSONDecoder().decode([Evaluation].self, from: _data)
-                for row in evaluations {
-                    print("content:\(String(row.content)) star:\(String(row.star))")
-                }
                 self.evaluationsIntoItems(evaluationArray: evaluations)
                 print("-------------")
                 print(self.items)
@@ -78,7 +93,9 @@ class CommentViewController: UIViewController, UITableViewDelegate, UITableViewD
     
     func evaluationsIntoItems(evaluationArray:[Evaluation]){
         for evaluation in evaluationArray{
-            items += [evaluation]
+            if(evaluation.permission){
+                items += [evaluation]
+            }
         }
     }
 }

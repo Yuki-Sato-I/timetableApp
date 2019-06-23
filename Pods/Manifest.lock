@@ -1,16 +1,20 @@
 PODS:
-  - lottie-ios (3.0.4)
+  - Cosmos (19.0.3)
+  - lottie-ios (3.1.0)
 
 DEPENDENCIES:
+  - Cosmos
   - lottie-ios
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
+    - Cosmos
     - lottie-ios
 
 SPEC CHECKSUMS:
-  lottie-ios: 55a2de40418f8de2b155efaba4d4d1a025a5c570
+  Cosmos: a6fb17284281fa12cf4c85c2efecd440a215ec44
+  lottie-ios: 9467723922dfff46f6d4e3019c32594a62440b7c
 
-PODFILE CHECKSUM: 8b40a5ca9edaee2b1f68a6af6ad0f7f3e68cf14c
+PODFILE CHECKSUM: d7c02f1f50e45a6bb82a3fe1f4d0aeeadc7ed9c0
 
 COCOAPODS: 1.6.1
