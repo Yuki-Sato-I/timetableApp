@@ -158,6 +158,11 @@ class CellViewController: UIViewController, AlertHelper {
             //configVc.classInfo = classInfo
             configVc.day = dateLabelEnglishArray[selectedNumber % 6 - 1]
             configVc.selectedNumber = selectedNumber
+            
+        }else if(segue.identifier == "evaluationSegue"){
+            let commentVc: CommentViewController = segue.destination as! CommentViewController
+            
+            commentVc.classId = classInfo.id
         }
     }
     

@@ -269,7 +269,7 @@
                                 <state key="normal" title="授業評価"/>
                                 <connections>
                                     <action selector="goToCommentPage:" destination="x0v-kc-nsO" eventType="touchUpInside" id="MpT-CX-XGG"/>
-                                    <segue destination="bdI-qK-xHE" kind="push" id="2A9-FX-NI4"/>
+                                    <segue destination="bdI-qK-xHE" kind="push" identifier="evaluationSegue" id="2A9-FX-NI4"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -300,18 +300,38 @@
         <!--Comment View Controller-->
         <scene sceneID="sEr-gr-yqa">
             <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ekt-DT-8Mx" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <viewController id="bdI-qK-xHE" customClass="CommentViewController" customModule="newTableTimeApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="6C2-mc-BCK">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="7VN-In-HaN">
+                                <rect key="frame" x="0.0" y="64" width="375" height="518"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="cfL-zW-cBZ">
+                                        <rect key="frame" x="0.0" y="28" width="375" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" restorationIdentifier="TableViewCell" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="cfL-zW-cBZ" id="CN2-2h-iiX">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </prototypes>
+                            </tableView>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="ONq-5W-758"/>
                     </view>
                     <navigationItem key="navigationItem" id="QOF-Ck-r7b"/>
+                    <connections>
+                        <outlet property="tableView" destination="7VN-In-HaN" id="Sjl-sh-ZEm"/>
+                    </connections>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="ekt-DT-8Mx" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3348" y="847"/>
+            <point key="canvasLocation" x="3348" y="846.9265367316342"/>
         </scene>
         <!--Config View Controller-->
         <scene sceneID="V8l-fK-vNb">
