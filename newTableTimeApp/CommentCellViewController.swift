@@ -17,8 +17,8 @@ class CommentCellViewController: UIViewController {
     
     @IBOutlet var evaluationLabel: UILabel!
     @IBOutlet var evaluationStar: CosmosView!
-    //@IBOutlet var entireView: UIView!
     @IBOutlet var imageView: UIImageView!
+    @IBOutlet var manImage: UIImageView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -31,7 +31,7 @@ class CommentCellViewController: UIViewController {
         
         imageView.isUserInteractionEnabled = true
         textView.contentOffset = CGPoint.zero
-        
+
         //デバック用
         //imageView.backgroundColor = .red
         //evaluationStar.backgroundColor = .blue

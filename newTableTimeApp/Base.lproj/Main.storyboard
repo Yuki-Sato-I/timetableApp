@@ -366,9 +366,13 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="man" translatesAutoresizingMaskIntoConstraints="NO" id="p0q-bc-EIH">
+                                <rect key="frame" x="0.0" y="486" width="99" height="181"/>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
+                            <constraint firstItem="p0q-bc-EIH" firstAttribute="width" secondItem="Wqv-lm-d7V" secondAttribute="width" multiplier="0.0001" constant="99" id="17s-BT-kdR"/>
                             <constraint firstItem="JSx-FN-ppk" firstAttribute="top" secondItem="C2Z-2i-jrt" secondAttribute="bottom" constant="3" id="2Sx-lv-2TH"/>
                             <constraint firstItem="54G-XR-AO4" firstAttribute="height" secondItem="q8B-IP-r0K" secondAttribute="height" multiplier="0.6" id="6wy-pS-tLY"/>
                             <constraint firstItem="JSx-FN-ppk" firstAttribute="centerX" secondItem="54G-XR-AO4" secondAttribute="centerX" id="Bl9-Xr-DhV"/>
@@ -376,6 +380,8 @@
                             <constraint firstItem="54G-XR-AO4" firstAttribute="centerX" secondItem="Wqv-lm-d7V" secondAttribute="centerX" id="JhL-js-XpY"/>
                             <constraint firstItem="JSx-FN-ppk" firstAttribute="width" secondItem="C2Z-2i-jrt" secondAttribute="width" id="M3d-NS-vqM"/>
                             <constraint firstItem="C2Z-2i-jrt" firstAttribute="top" secondItem="54G-XR-AO4" secondAttribute="top" constant="30" id="Xxv-7I-R1T"/>
+                            <constraint firstItem="p0q-bc-EIH" firstAttribute="bottom" secondItem="Wqv-lm-d7V" secondAttribute="bottom" id="bB6-ku-1YU"/>
+                            <constraint firstItem="p0q-bc-EIH" firstAttribute="leading" secondItem="Wqv-lm-d7V" secondAttribute="leading" id="gsX-WM-h1v"/>
                             <constraint firstItem="54G-XR-AO4" firstAttribute="width" secondItem="q8B-IP-r0K" secondAttribute="width" multiplier="0.9" id="ic4-8t-5II"/>
                             <constraint firstItem="C2Z-2i-jrt" firstAttribute="centerX" secondItem="54G-XR-AO4" secondAttribute="centerX" id="juj-dW-pYV"/>
                             <constraint firstItem="S5N-iD-nhd" firstAttribute="centerX" secondItem="54G-XR-AO4" secondAttribute="centerX" id="pDx-sO-cB0"/>
@@ -383,6 +389,7 @@
                             <constraint firstItem="54G-XR-AO4" firstAttribute="top" secondItem="Wqv-lm-d7V" secondAttribute="top" constant="10" id="vvw-Mc-BSa"/>
                             <constraint firstItem="C2Z-2i-jrt" firstAttribute="width" secondItem="54G-XR-AO4" secondAttribute="width" multiplier="0.85" id="yF5-Gp-18g"/>
                             <constraint firstItem="S5N-iD-nhd" firstAttribute="top" secondItem="JSx-FN-ppk" secondAttribute="bottom" constant="5" id="zPl-Zh-hwC"/>
+                            <constraint firstItem="p0q-bc-EIH" firstAttribute="height" secondItem="Wqv-lm-d7V" secondAttribute="height" multiplier="0.3" id="zgJ-Zf-WnO"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="Wqv-lm-d7V"/>
                     </view>
@@ -391,6 +398,7 @@
                         <outlet property="evaluationLabel" destination="C2Z-2i-jrt" id="3Jy-CZ-rpp"/>
                         <outlet property="evaluationStar" destination="JSx-FN-ppk" id="vEz-Vg-WW1"/>
                         <outlet property="imageView" destination="54G-XR-AO4" id="AGH-1i-Uq2"/>
+                        <outlet property="manImage" destination="p0q-bc-EIH" id="Rzl-c2-h3c"/>
                         <outlet property="textView" destination="S5N-iD-nhd" id="8CD-tU-nRm"/>
                     </connections>
                 </viewController>
@@ -507,5 +515,6 @@
     </scenes>
     <resources>
         <image name="hukidasi" width="100" height="132.66667175292969"/>
+        <image name="man" width="255" height="568"/>
     </resources>
 </document>
