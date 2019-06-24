@@ -263,6 +263,15 @@
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jAp-XW-Yb9">
+                                <rect key="frame" x="156" y="486" width="62" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="授業評価"/>
+                                <connections>
+                                    <action selector="goToCommentPage:" destination="x0v-kc-nsO" eventType="touchUpInside" id="MpT-CX-XGG"/>
+                                    <segue destination="bdI-qK-xHE" kind="push" identifier="evaluationSegue" id="2A9-FX-NI4"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="7pO-RF-88Y"/>
@@ -275,6 +284,7 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="classEvaluation" destination="jAp-XW-Yb9" id="F5y-Od-R9Q"/>
                         <outlet property="creditContent" destination="x8e-LA-b37" id="rg2-64-f4j"/>
                         <outlet property="creditLabel" destination="9bV-4X-WOj" id="TK4-uQ-ROO"/>
                         <outlet property="teacherContent" destination="LAr-oR-9mv" id="s8a-Ld-GX8"/>
@@ -286,6 +296,115 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="99v-xy-9h0" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="3348" y="107"/>
+        </scene>
+        <!--Comment View Controller-->
+        <scene sceneID="sEr-gr-yqa">
+            <objects>
+                <viewController id="bdI-qK-xHE" customClass="CommentViewController" customModule="newTableTimeApp" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="6C2-mc-BCK">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="7VN-In-HaN">
+                                <rect key="frame" x="0.0" y="64" width="375" height="518"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="cfL-zW-cBZ">
+                                        <rect key="frame" x="0.0" y="28" width="375" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" restorationIdentifier="TableViewCell" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="cfL-zW-cBZ" id="CN2-2h-iiX">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </prototypes>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <viewLayoutGuide key="safeArea" id="ONq-5W-758"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="QOF-Ck-r7b"/>
+                    <connections>
+                        <outlet property="tableView" destination="7VN-In-HaN" id="Sjl-sh-ZEm"/>
+                        <segue destination="4vt-IT-Z52" kind="push" identifier="TableViewCellSegue" id="074-QN-ZFy"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ekt-DT-8Mx" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3348" y="846.9265367316342"/>
+        </scene>
+        <!--Comment Cell View Controller-->
+        <scene sceneID="lgx-L7-cJN">
+            <objects>
+                <viewController id="4vt-IT-Z52" customClass="CommentCellViewController" customModule="newTableTimeApp" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="q8B-IP-r0K">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="hukidasi" translatesAutoresizingMaskIntoConstraints="NO" id="54G-XR-AO4">
+                                <rect key="frame" x="19" y="74" width="337.5" height="400"/>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="評価" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="C2Z-2i-jrt">
+                                <rect key="frame" x="52.5" y="58.5" width="270" height="30"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="JSx-FN-ppk" customClass="CosmosView" customModule="Cosmos">
+                                <rect key="frame" x="52.5" y="150" width="270" height="30"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="rating">
+                                        <real key="value" value="0.0"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </view>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="S5N-iD-nhd">
+                                <rect key="frame" x="44" y="152.5" width="287" height="240"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <mutableString key="text">Lorem ipsum dolor sit er elit lamet, cofwefwefweggwegvwegvwegwgewnsectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</mutableString>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="man" translatesAutoresizingMaskIntoConstraints="NO" id="p0q-bc-EIH">
+                                <rect key="frame" x="0.0" y="486" width="94" height="181"/>
+                            </imageView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="p0q-bc-EIH" firstAttribute="width" secondItem="Wqv-lm-d7V" secondAttribute="width" multiplier="0.25" id="17s-BT-kdR"/>
+                            <constraint firstItem="JSx-FN-ppk" firstAttribute="top" secondItem="C2Z-2i-jrt" secondAttribute="bottom" constant="3" id="2Sx-lv-2TH"/>
+                            <constraint firstItem="54G-XR-AO4" firstAttribute="height" secondItem="q8B-IP-r0K" secondAttribute="height" multiplier="0.6" id="6wy-pS-tLY"/>
+                            <constraint firstItem="JSx-FN-ppk" firstAttribute="centerX" secondItem="54G-XR-AO4" secondAttribute="centerX" id="Bl9-Xr-DhV"/>
+                            <constraint firstItem="S5N-iD-nhd" firstAttribute="width" secondItem="C2Z-2i-jrt" secondAttribute="width" id="Iuy-IJ-H8u"/>
+                            <constraint firstItem="54G-XR-AO4" firstAttribute="centerX" secondItem="Wqv-lm-d7V" secondAttribute="centerX" id="JhL-js-XpY"/>
+                            <constraint firstItem="JSx-FN-ppk" firstAttribute="width" secondItem="C2Z-2i-jrt" secondAttribute="width" id="M3d-NS-vqM"/>
+                            <constraint firstItem="C2Z-2i-jrt" firstAttribute="top" secondItem="54G-XR-AO4" secondAttribute="top" constant="30" id="Xxv-7I-R1T"/>
+                            <constraint firstItem="p0q-bc-EIH" firstAttribute="bottom" secondItem="Wqv-lm-d7V" secondAttribute="bottom" id="bB6-ku-1YU"/>
+                            <constraint firstItem="p0q-bc-EIH" firstAttribute="leading" secondItem="Wqv-lm-d7V" secondAttribute="leading" id="gsX-WM-h1v"/>
+                            <constraint firstItem="54G-XR-AO4" firstAttribute="width" secondItem="q8B-IP-r0K" secondAttribute="width" multiplier="0.9" id="ic4-8t-5II"/>
+                            <constraint firstItem="C2Z-2i-jrt" firstAttribute="centerX" secondItem="54G-XR-AO4" secondAttribute="centerX" id="juj-dW-pYV"/>
+                            <constraint firstItem="S5N-iD-nhd" firstAttribute="centerX" secondItem="54G-XR-AO4" secondAttribute="centerX" id="pDx-sO-cB0"/>
+                            <constraint firstItem="S5N-iD-nhd" firstAttribute="height" secondItem="54G-XR-AO4" secondAttribute="height" multiplier="0.6" id="ufD-oy-6UW"/>
+                            <constraint firstItem="54G-XR-AO4" firstAttribute="top" secondItem="Wqv-lm-d7V" secondAttribute="top" constant="10" id="vvw-Mc-BSa"/>
+                            <constraint firstItem="C2Z-2i-jrt" firstAttribute="width" secondItem="54G-XR-AO4" secondAttribute="width" multiplier="0.85" id="yF5-Gp-18g"/>
+                            <constraint firstItem="S5N-iD-nhd" firstAttribute="top" secondItem="JSx-FN-ppk" secondAttribute="bottom" constant="5" id="zPl-Zh-hwC"/>
+                            <constraint firstItem="p0q-bc-EIH" firstAttribute="height" secondItem="Wqv-lm-d7V" secondAttribute="height" multiplier="0.3" id="zgJ-Zf-WnO"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="Wqv-lm-d7V"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="G3F-ha-qN4"/>
+                    <connections>
+                        <outlet property="evaluationLabel" destination="C2Z-2i-jrt" id="3Jy-CZ-rpp"/>
+                        <outlet property="evaluationStar" destination="JSx-FN-ppk" id="vEz-Vg-WW1"/>
+                        <outlet property="imageView" destination="54G-XR-AO4" id="AGH-1i-Uq2"/>
+                        <outlet property="manImage" destination="p0q-bc-EIH" id="Rzl-c2-h3c"/>
+                        <outlet property="textView" destination="S5N-iD-nhd" id="8CD-tU-nRm"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ARz-hr-IEU" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4125.6000000000004" y="846.9265367316342"/>
         </scene>
         <!--Config View Controller-->
         <scene sceneID="V8l-fK-vNb">
@@ -394,4 +513,8 @@
             <point key="canvasLocation" x="4282.3999999999996" y="106.59670164917542"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="hukidasi" width="100" height="132.66667175292969"/>
+        <image name="man" width="255" height="568"/>
+    </resources>
 </document>
