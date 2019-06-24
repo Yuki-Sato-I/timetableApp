@@ -29,26 +29,17 @@ class CommentCellViewController: UIViewController {
         evaluationStar.settings.fillMode = .half
         evaluationStar.rating = evaluation.star
         
-        let parent = self.view.frame
+        //let parent = self.view.frame
  
-        //imageView.frame = CGRect(x: 0, y: parent.height/8, width: parent.width - 50, height: parent.height * 4/7)
-        //imageView.frame.height = parent.height * 4/7
         imageView.backgroundColor = .red
-        imageView.center.x = self.view.center.x
+        
         imageView.isUserInteractionEnabled = true
+
         
-        evaluationLabel.frame = CGRect(x: parent.width/15, y: parent.height/13 - 20, width: parent.width*7/10, height: 20)
-        evaluationStar.frame = CGRect(x: parent.width/15, y: parent.height/13, width: parent.width*7/10, height: 25)
-        textView.frame = CGRect(x: parent.width/15, y: parent.width*3/13, width: parent.width*7/10, height: parent.height*3/10)
-        
-        //evaluationLabel.center.x = self.view.center.x
-        //evaluationStar.center.x = self.view.center.x
-        //textView.center.x = self.view.center.x
-        
-        
-        imageView.addSubview(evaluationLabel)
-        imageView.addSubview(evaluationStar)
-        imageView.addSubview(textView)
+        //evaluationStar.backgroundColor = .blue
+        //evaluationLabel.backgroundColor = .yellow
+        textView.contentOffset = CGPoint.zero
+
         
         
         

@@ -343,17 +343,17 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="hukidasi" translatesAutoresizingMaskIntoConstraints="NO" id="54G-XR-AO4">
-                                <rect key="frame" x="19" y="94" width="337.5" height="400"/>
+                                <rect key="frame" x="19" y="74" width="337.5" height="400"/>
                                 <color key="backgroundColor" red="1" green="0.14913141730000001" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="評価" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="C2Z-2i-jrt">
-                                <rect key="frame" x="52.5" y="129" width="270" height="21"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="評価" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="C2Z-2i-jrt">
+                                <rect key="frame" x="52.5" y="58.5" width="270" height="30"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="JSx-FN-ppk" customClass="CosmosView" customModule="Cosmos">
-                                <rect key="frame" x="52.5" y="150" width="270" height="20"/>
+                            <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="JSx-FN-ppk" customClass="CosmosView" customModule="Cosmos">
+                                <rect key="frame" x="52.5" y="150" width="270" height="30"/>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="number" keyPath="rating">
                                         <real key="value" value="0.0"/>
@@ -361,7 +361,7 @@
                                 </userDefinedRuntimeAttributes>
                             </view>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="S5N-iD-nhd">
-                                <rect key="frame" x="52.5" y="180" width="270" height="240"/>
+                                <rect key="frame" x="44" y="152.5" width="287" height="240"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <mutableString key="text">Lorem ipsum dolor sit er elit lamet, cofwefwefweggwegvwegvwegwgewnsectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</mutableString>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -370,20 +370,20 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="JSx-FN-ppk" firstAttribute="top" secondItem="C2Z-2i-jrt" secondAttribute="bottom" id="0GA-z2-78F"/>
+                            <constraint firstItem="JSx-FN-ppk" firstAttribute="top" secondItem="C2Z-2i-jrt" secondAttribute="bottom" constant="3" id="2Sx-lv-2TH"/>
                             <constraint firstItem="54G-XR-AO4" firstAttribute="height" secondItem="q8B-IP-r0K" secondAttribute="height" multiplier="0.6" id="6wy-pS-tLY"/>
-                            <constraint firstItem="C2Z-2i-jrt" firstAttribute="top" secondItem="Wqv-lm-d7V" secondAttribute="top" constant="65" id="8Dp-bF-sjU"/>
+                            <constraint firstItem="JSx-FN-ppk" firstAttribute="centerX" secondItem="54G-XR-AO4" secondAttribute="centerX" id="Bl9-Xr-DhV"/>
+                            <constraint firstItem="S5N-iD-nhd" firstAttribute="width" secondItem="C2Z-2i-jrt" secondAttribute="width" id="Iuy-IJ-H8u"/>
                             <constraint firstItem="54G-XR-AO4" firstAttribute="centerX" secondItem="Wqv-lm-d7V" secondAttribute="centerX" id="JhL-js-XpY"/>
-                            <constraint firstItem="S5N-iD-nhd" firstAttribute="height" secondItem="54G-XR-AO4" secondAttribute="height" multiplier="0.6" id="Jmr-fo-sUh"/>
-                            <constraint firstItem="JSx-FN-ppk" firstAttribute="centerX" secondItem="54G-XR-AO4" secondAttribute="centerX" id="NW4-pN-nFt"/>
-                            <constraint firstItem="C2Z-2i-jrt" firstAttribute="centerX" secondItem="54G-XR-AO4" secondAttribute="centerX" id="RWE-pM-fIa"/>
-                            <constraint firstItem="S5N-iD-nhd" firstAttribute="bottom" secondItem="54G-XR-AO4" secondAttribute="bottom" multiplier="0.85" id="VVG-pO-rb1"/>
-                            <constraint firstItem="C2Z-2i-jrt" firstAttribute="width" secondItem="54G-XR-AO4" secondAttribute="width" multiplier="0.8" id="dMq-Lv-0K0"/>
+                            <constraint firstItem="JSx-FN-ppk" firstAttribute="width" secondItem="C2Z-2i-jrt" secondAttribute="width" id="M3d-NS-vqM"/>
+                            <constraint firstItem="C2Z-2i-jrt" firstAttribute="top" secondItem="54G-XR-AO4" secondAttribute="top" constant="30" id="Xxv-7I-R1T"/>
                             <constraint firstItem="54G-XR-AO4" firstAttribute="width" secondItem="q8B-IP-r0K" secondAttribute="width" multiplier="0.9" id="ic4-8t-5II"/>
-                            <constraint firstItem="S5N-iD-nhd" firstAttribute="centerX" secondItem="54G-XR-AO4" secondAttribute="centerX" id="nvU-XU-egI"/>
-                            <constraint firstItem="JSx-FN-ppk" firstAttribute="width" secondItem="54G-XR-AO4" secondAttribute="width" multiplier="0.8" id="v7H-eE-qgj"/>
-                            <constraint firstItem="S5N-iD-nhd" firstAttribute="width" secondItem="54G-XR-AO4" secondAttribute="width" multiplier="0.8" id="v7o-YH-ZDQ"/>
-                            <constraint firstItem="54G-XR-AO4" firstAttribute="top" secondItem="Wqv-lm-d7V" secondAttribute="top" constant="30" id="vvw-Mc-BSa"/>
+                            <constraint firstItem="C2Z-2i-jrt" firstAttribute="centerX" secondItem="54G-XR-AO4" secondAttribute="centerX" id="juj-dW-pYV"/>
+                            <constraint firstItem="S5N-iD-nhd" firstAttribute="centerX" secondItem="54G-XR-AO4" secondAttribute="centerX" id="pDx-sO-cB0"/>
+                            <constraint firstItem="S5N-iD-nhd" firstAttribute="height" secondItem="54G-XR-AO4" secondAttribute="height" multiplier="0.6" id="ufD-oy-6UW"/>
+                            <constraint firstItem="54G-XR-AO4" firstAttribute="top" secondItem="Wqv-lm-d7V" secondAttribute="top" constant="10" id="vvw-Mc-BSa"/>
+                            <constraint firstItem="C2Z-2i-jrt" firstAttribute="width" secondItem="54G-XR-AO4" secondAttribute="width" multiplier="0.85" id="yF5-Gp-18g"/>
+                            <constraint firstItem="S5N-iD-nhd" firstAttribute="top" secondItem="JSx-FN-ppk" secondAttribute="bottom" constant="5" id="zPl-Zh-hwC"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="Wqv-lm-d7V"/>
                     </view>
