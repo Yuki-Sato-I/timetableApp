@@ -23,26 +23,20 @@ class CommentCellViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        //textView.text = evaluation.content
+        textView.text = evaluation.content
         
         evaluationStar.settings.updateOnTouch = false
         evaluationStar.settings.fillMode = .half
         evaluationStar.rating = evaluation.star
         
-        //let parent = self.view.frame
- 
-        imageView.backgroundColor = .red
-        
         imageView.isUserInteractionEnabled = true
-
+        textView.contentOffset = CGPoint.zero
         
+        //デバック用
+        //imageView.backgroundColor = .red
         //evaluationStar.backgroundColor = .blue
         //evaluationLabel.backgroundColor = .yellow
-        textView.contentOffset = CGPoint.zero
-
-        
-        
-        
+         
     }
 
 }
