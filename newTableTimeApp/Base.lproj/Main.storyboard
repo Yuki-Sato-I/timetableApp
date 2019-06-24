@@ -367,12 +367,12 @@
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="man" translatesAutoresizingMaskIntoConstraints="NO" id="p0q-bc-EIH">
-                                <rect key="frame" x="0.0" y="486" width="112.5" height="181"/>
+                                <rect key="frame" x="0.0" y="486" width="94" height="181"/>
                             </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="p0q-bc-EIH" firstAttribute="width" secondItem="Wqv-lm-d7V" secondAttribute="width" multiplier="0.3" id="17s-BT-kdR"/>
+                            <constraint firstItem="p0q-bc-EIH" firstAttribute="width" secondItem="Wqv-lm-d7V" secondAttribute="width" multiplier="0.25" id="17s-BT-kdR"/>
                             <constraint firstItem="JSx-FN-ppk" firstAttribute="top" secondItem="C2Z-2i-jrt" secondAttribute="bottom" constant="3" id="2Sx-lv-2TH"/>
                             <constraint firstItem="54G-XR-AO4" firstAttribute="height" secondItem="q8B-IP-r0K" secondAttribute="height" multiplier="0.6" id="6wy-pS-tLY"/>
                             <constraint firstItem="JSx-FN-ppk" firstAttribute="centerX" secondItem="54G-XR-AO4" secondAttribute="centerX" id="Bl9-Xr-DhV"/>
