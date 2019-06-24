@@ -9,16 +9,10 @@
 import UIKit
 import AVFoundation
 
-class StartViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource {
+class StartViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource, AlertHelper {
 
     var player = AVPlayer()
     @IBOutlet var textField: UITextField!
-    let alert: UIAlertController = UIAlertController(title: "所属が選択されていません", message: "所属を選択してください！", preferredStyle:  UIAlertController.Style.alert)
-    
-    let defaultAction: UIAlertAction = UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler:{
-        (action: UIAlertAction!) -> Void in
-        print("OK")
-    })
     
     var pickerView: UIPickerView = UIPickerView()
     let list = ["所属を選択してね", "農学部", "理工学部", "教育学部", "人文社会学部", "総合科学研究科", "教育学研究科", "理工学研究科", "獣医学研究科", "連合農学研究科", "その他"]
@@ -42,8 +36,6 @@ class StartViewController: UIViewController, UIPickerViewDelegate, UIPickerViewD
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        alert.addAction(defaultAction)
 
         pickerView.delegate = self
         pickerView.dataSource = self
@@ -97,7 +89,7 @@ class StartViewController: UIViewController, UIPickerViewDelegate, UIPickerViewD
             }
         }
         //alert表示
-        present(alert, animated: true, completion: nil)
+        self.makeAndShowAlert(errorTitle: "所属が選択されていません", errorMessage: "所属を選択してください！", viewController: self)
         return false
     }
     

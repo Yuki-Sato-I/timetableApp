@@ -13,6 +13,8 @@
 		B61585D122BF520E009FFA0E /* CommentCellViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B61585D022BF520E009FFA0E /* CommentCellViewController.swift */; };
 		B61585D322BF5D19009FFA0E /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = B61585D222BF5D19009FFA0E /* Settings.bundle */; };
 		B61585D522C09C69009FFA0E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B61585D422C09C69009FFA0E /* Assets.xcassets */; };
+		B61585D722C0C704009FFA0E /* CommentMakeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B61585D622C0C704009FFA0E /* CommentMakeViewController.swift */; };
+		B61585D922C104B6009FFA0E /* comment.json in Resources */ = {isa = PBXBuildFile; fileRef = B61585D822C104B6009FFA0E /* comment.json */; };
 		B61DA05B22ABE5C300C875D8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B61DA05A22ABE5C300C875D8 /* AppDelegate.swift */; };
 		B61DA05D22ABE5C400C875D8 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B61DA05C22ABE5C400C875D8 /* ViewController.swift */; };
 		B61DA06022ABE5C400C875D8 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B61DA05E22ABE5C400C875D8 /* Main.storyboard */; };
@@ -38,6 +40,8 @@
 		B61585D022BF520E009FFA0E /* CommentCellViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentCellViewController.swift; sourceTree = "<group>"; };
 		B61585D222BF5D19009FFA0E /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
 		B61585D422C09C69009FFA0E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		B61585D622C0C704009FFA0E /* CommentMakeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentMakeViewController.swift; sourceTree = "<group>"; };
+		B61585D822C104B6009FFA0E /* comment.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = comment.json; sourceTree = "<group>"; };
 		B61DA05722ABE5C300C875D8 /* newTableTimeApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = newTableTimeApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B61DA05A22ABE5C300C875D8 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B61DA05C22ABE5C400C875D8 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -110,6 +114,7 @@
 				B61DA08022ACBE6A00C875D8 /* busy.json */,
 				B61DA07C22ACBE6A00C875D8 /* select.json */,
 				B61DA08822ACC0F200C875D8 /* schedule.json */,
+				B61585D822C104B6009FFA0E /* comment.json */,
 				B61DA07F22ACBE6A00C875D8 /* use.json */,
 				B61DA05A22ABE5C300C875D8 /* AppDelegate.swift */,
 				B61DA08A22ACC27E00C875D8 /* TimeTableViewController.swift */,
@@ -119,6 +124,7 @@
 				B63EB36222B6179400960DF9 /* ConfigViewController.swift */,
 				B61585C822BE607B009FFA0E /* CommentViewController.swift */,
 				B61585D022BF520E009FFA0E /* CommentCellViewController.swift */,
+				B61585D622C0C704009FFA0E /* CommentMakeViewController.swift */,
 				B61585CA22BE6C1D009FFA0E /* Helper.swift */,
 				B61DA05E22ABE5C400C875D8 /* Main.storyboard */,
 				B61585D422C09C69009FFA0E /* Assets.xcassets */,
@@ -199,6 +205,7 @@
 				B61DA08122ACBE6B00C875D8 /* select.json in Resources */,
 				B61DA08522ACBE6B00C875D8 /* busy.json in Resources */,
 				B61DA06022ABE5C400C875D8 /* Main.storyboard in Resources */,
+				B61585D922C104B6009FFA0E /* comment.json in Resources */,
 				B61DA08922ACC0F200C875D8 /* schedule.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -259,6 +266,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B61585D722C0C704009FFA0E /* CommentMakeViewController.swift in Sources */,
 				B61585C922BE607B009FFA0E /* CommentViewController.swift in Sources */,
 				B6B1562222B28B7600287149 /* CellViewController.swift in Sources */,
 				B61DA07922AC00E600C875D8 /* StartViewController.swift in Sources */,
