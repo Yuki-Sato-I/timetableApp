@@ -46,7 +46,7 @@ class TimeTableViewController: UIViewController, UICollectionViewDataSource, UIC
             
             /* 曜日のとこのcellの設定 */
             if(indexPath.row % 6 != 0){
-                let dateLabel = UILabel(frame: CGRect(x:0, y:0, width: collectionView.bounds.width/5 - 5, height: 13))
+                let dateLabel = UILabel(frame: CGRect(x:0, y:0, width: collectionView.bounds.width/5 - 1, height: 13))
                 dateLabel.text = date[indexPath.row - 1]
                 dateLabel.textAlignment = .center
                 
@@ -81,7 +81,7 @@ class TimeTableViewController: UIViewController, UICollectionViewDataSource, UIC
                 cell.isUserInteractionEnabled = false
                 cell.backgroundColor = .lightGray
                 
-                let hourLabel = UILabel(frame: CGRect(x:0, y:0, width: 15, height: collectionView.bounds.width/5 + 10))
+                let hourLabel = UILabel(frame: CGRect(x:0, y:0, width: 15, height: collectionView.bounds.width/5 + 14))
                 hourLabel.text = String(indexPath.row / 6 + 1)
                 hourLabel.textAlignment = .center
                 cell.contentView.addSubview(hourLabel)
@@ -93,14 +93,14 @@ class TimeTableViewController: UIViewController, UICollectionViewDataSource, UIC
         return cell
         
     }
-    
+
     //cellのサイズを変更
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
 
         var cellSize: CGSize
         
-        let cellWidth = (collectionView.bounds.width / 5) - 5
-        
+        let cellWidth: CGFloat = (collectionView.frame.width - 15.0) / 5.0 - 1.01
+        print(cellWidth)
         if(indexPath.section == 0){
             cellSize = CGSize(width: cellWidth, height: 15)
             if(indexPath.row % 6 == 0){
@@ -153,6 +153,9 @@ class TimeTableViewController: UIViewController, UICollectionViewDataSource, UIC
         super.viewDidLoad()
         collectionView.delegate = self
         collectionView.dataSource = self
+        
+        print(collectionView.frame.width)
+        
 
 
         if let layout = collectionView.collectionViewLayout as? UICollectionViewFlowLayout{
@@ -160,9 +163,9 @@ class TimeTableViewController: UIViewController, UICollectionViewDataSource, UIC
             
             //layout.itemSize = CGSize(width: cellWidth, height: cellWidth + 15)
             // ここからはオプション マージンとかをなくしている
-            layout.sectionInset = UIEdgeInsets(top: 0, left: 0, bottom: 2, right: 0)
-            layout.minimumInteritemSpacing = 2// アイテム間?
-            //layout.minimumLineSpacing = CGFloat(1) // 行間
+            layout.sectionInset = UIEdgeInsets(top: 0, left: 0, bottom: 1, right: 0)
+            layout.minimumLineSpacing = 1// アイテム間?
+            layout.minimumInteritemSpacing = 1
             
             
         }
