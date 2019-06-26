@@ -36,7 +36,7 @@ class CommentCellViewController: UIViewController {
         //imageView.backgroundColor = .red
         //evaluationStar.backgroundColor = .blue
         //evaluationLabel.backgroundColor = .yellow
-         
+        
     }
 
 }
