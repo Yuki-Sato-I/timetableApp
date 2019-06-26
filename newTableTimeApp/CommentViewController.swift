@@ -48,9 +48,12 @@ class CommentViewController: UIViewController, UITableViewDelegate, UITableViewD
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "TableViewCellSegue" {
+        if (segue.identifier == "TableViewCellSegue") {
             let vc = segue.destination as! CommentCellViewController
             vc.evaluation = selectedItem
+        }else if(segue.identifier == "makeEvaluationPageSegue"){
+            let vc = segue.destination as! CommentMakeViewController
+            vc.classId = classId
         }
     }
     
