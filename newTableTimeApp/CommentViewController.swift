@@ -62,7 +62,13 @@ class CommentViewController: UIViewController, UITableViewDelegate, UITableViewD
         tableView.delegate = self
         tableView.dataSource = self
         getJson()
-
+    }
+    
+    //戻ってきたときの画面リロード
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        loadView()
+        viewDidLoad()
     }
     
     //apiを叩いて該当する評価を取得し、表示する

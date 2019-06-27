@@ -9,9 +9,15 @@
 import UIKit
 import Cosmos
 
-class CommentMakeViewController: UIViewController {
+class CommentMakeViewController: UIViewController, AlertHelper {
 
     var classId:Int!
+    
+    //デバック用
+    let url = "http://localhost:3000/apis/create_evaluation"
+    //本番用
+    //let url = ""
+    
     @IBOutlet var nameTextField: UITextField!
     @IBOutlet var titleTextField: UITextField!
     @IBOutlet var commentTextField: UITextField!
@@ -75,8 +81,22 @@ class CommentMakeViewController: UIViewController {
             "star": star.rating,
             "permission": false
         ]
-        print(star.rating)
-        postJson(urlString: "http://localhost:3000/apis/create_evaluation", parameters: params)
+        
+        if(commentTextField.text == "" || titleTextField.text == ""){
+            
+            self.makeAndShowAlert(title: "入力されていない項目があります", message: "必須項目は入力してください", viewController: self, action: [])
+        }else{
+        
+            let actionOK = UIAlertAction(title: "OK", style: .default){ action in
+                self.postJson(urlString: self.url, parameters: params)
+                self.navigationController?.popViewController(animated: true)
+            }
+            
+            let actionCancel = UIAlertAction(title: "キャンセル", style: .default)
+            
+            self.makeAndShowAlert(title: "データを送信していいですか？", message: "承認されるまで授業評価は反映されません", viewController: self, action: [actionOK, actionCancel])
+            print(star.rating)
+        }
     }
     
 }
