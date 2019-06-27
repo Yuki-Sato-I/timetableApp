@@ -163,23 +163,28 @@ class ConfigViewController: UIViewController, UIPickerViewDelegate, UIPickerView
     //授業を登録する
     @IBAction func register(_ sender: Any) {
         if(classTextField.text != "" && teacherTextField.text != "" && creditTextField.text != ""){
-            let classInfo = CellViewController.ClassInfo(id: id,
-                                                         title: classTextField.text!,
-                                                         teacher: teacherTextField.text!,
-                                                         credit: Int(creditTextField.text!)!,
-                                                         day: day,
-                                                         faculty: UserDefaults.standard.object(forKey: "userInformation") as! String,
-                                                         specialty: true,
-                                                         attendCount: 0,
-                                                         absentCount: 0,
-                                                         lateCount: 0)
-
-            let encoder = JSONEncoder()
-            if let encoded = try? encoder.encode(classInfo) {
-                UserDefaults.standard.set(encoded, forKey: String(selectedNumber))
+            let actionOK = UIAlertAction(title: "OK", style: .default){ action in
+                let classInfo = CellViewController.ClassInfo(id: self.id,
+                                                             title: self.classTextField.text!,
+                                                             teacher: self.teacherTextField.text!,
+                                                             credit: Int(self.creditTextField.text!)!,
+                                                             day: self.day,
+                                                             faculty: UserDefaults.standard.object(forKey: "userInformation") as! String,
+                                                             specialty: true,
+                                                             attendCount: 0,
+                                                             absentCount: 0,
+                                                             lateCount: 0)
+                
+                let encoder = JSONEncoder()
+                if let encoded = try? encoder.encode(classInfo) {
+                    UserDefaults.standard.set(encoded, forKey: String(self.selectedNumber))
+                }
+                self.navigationController?.popViewController(animated: true)
+                print(classInfo)
             }
-            print(classInfo)
-            self.navigationController?.popViewController(animated: true)
+            let actionCancel = UIAlertAction(title: "キャンセル", style: .default)
+            
+            self.makeAndShowAlert(title: "授業を登録しますか？", message: "以前登録されていた情報を上書きします", viewController: self, action: [actionOK, actionCancel])
         }else{
             self.makeAndShowAlert(title: "未記入の項目があります", message: "全て入力してください", viewController: self, action: [])
         }
