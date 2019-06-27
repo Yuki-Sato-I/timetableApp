@@ -79,12 +79,12 @@ class CommentMakeViewController: UIViewController, AlertHelper {
             "content": commentTextField.text!,
             "user": nameTextField.text!,
             "star": star.rating,
-            "permission": true
+            "permission": false
         ]
         
         if(commentTextField.text == "" || titleTextField.text == ""){
             
-            self.makeAndShowAlert(title: "タイトルもしくはコメントが入力されていません", message: "必須項目は入力してください", viewController: self, action: [])
+            self.makeAndShowAlert(title: "入力されていない項目があります", message: "必須項目は入力してください", viewController: self, action: [])
         }else{
         
             let actionOK = UIAlertAction(title: "OK", style: .default){ action in
