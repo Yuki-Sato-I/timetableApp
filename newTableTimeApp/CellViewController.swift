@@ -175,9 +175,9 @@ class CellViewController: UIViewController, AlertHelper {
     
     @IBAction func goToCommentPage(_ sender: Any) {
         if(classInfo.id == -999){
-            self.makeAndShowAlert(errorTitle: "エラー", errorMessage: "この授業は自分で入力したものです.", viewController: self)
+            self.makeAndShowAlert(title: "エラー", message: "この授業は自分で入力したものです.", viewController: self, action: [])
         }else if(classInfo.id == -1000){
-            self.makeAndShowAlert(errorTitle: "エラー", errorMessage: "まだ授業を登録していません.", viewController: self)
+            self.makeAndShowAlert(title: "エラー", message: "まだ授業を登録していません.", viewController: self, action: [])
         }
     }
     

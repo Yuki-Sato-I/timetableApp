@@ -9,17 +9,23 @@
 import UIKit
 
 protocol AlertHelper{
-    func makeAndShowAlert(errorTitle: String, errorMessage: String, viewController: UIViewController)
+    func makeAndShowAlert(title: String, message: String, viewController: UIViewController, action:[UIAlertAction])
 }
 extension AlertHelper{
-    func makeAndShowAlert(errorTitle: String, errorMessage: String, viewController: UIViewController){
-        let alert: UIAlertController = UIAlertController(title: errorTitle, message: errorMessage, preferredStyle:  UIAlertController.Style.alert)
+    func makeAndShowAlert(title: String, message: String, viewController: UIViewController, action: [UIAlertAction]){
+        let alert: UIAlertController = UIAlertController(title: title, message: message, preferredStyle:  UIAlertController.Style.alert)
         
         let defaultAction: UIAlertAction = UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler:{
             (action: UIAlertAction!) -> Void in
             print("OK")
         })
-        alert.addAction(defaultAction)
+        if(action.isEmpty){
+            alert.addAction(defaultAction)
+        }else{
+            for alertAction in action {
+                alert.addAction(alertAction)
+            }
+        }
         viewController.present(alert, animated: true, completion: nil)
     }
 }

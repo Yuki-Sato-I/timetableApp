@@ -181,7 +181,7 @@ class ConfigViewController: UIViewController, UIPickerViewDelegate, UIPickerView
             print(classInfo)
             self.navigationController?.popViewController(animated: true)
         }else{
-            self.makeAndShowAlert(errorTitle: "未記入の項目があります", errorMessage: "全て入力してください", viewController: self)
+            self.makeAndShowAlert(title: "未記入の項目があります", message: "全て入力してください", viewController: self, action: [])
         }
     }
     

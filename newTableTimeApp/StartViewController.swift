@@ -89,7 +89,7 @@ class StartViewController: UIViewController, UIPickerViewDelegate, UIPickerViewD
             }
         }
         //alert表示
-        self.makeAndShowAlert(errorTitle: "所属が選択されていません", errorMessage: "所属を選択してください！", viewController: self)
+        self.makeAndShowAlert(title: "所属が選択されていません", message: "所属を選択してください！", viewController: self, action: [])
         return false
     }
     

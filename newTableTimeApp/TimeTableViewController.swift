@@ -100,7 +100,7 @@ class TimeTableViewController: UIViewController, UICollectionViewDataSource, UIC
         var cellSize: CGSize
         
         let cellWidth: CGFloat = (collectionView.frame.width - 15.0) / 5.0 - 1.01
-        print(cellWidth)
+        
         if(indexPath.section == 0){
             cellSize = CGSize(width: cellWidth, height: 15)
             if(indexPath.row % 6 == 0){
