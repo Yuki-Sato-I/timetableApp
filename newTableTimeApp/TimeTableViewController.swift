@@ -155,8 +155,6 @@ class TimeTableViewController: UIViewController, UICollectionViewDataSource, UIC
         collectionView.dataSource = self
         
         print(collectionView.frame.width)
-        
-
 
         if let layout = collectionView.collectionViewLayout as? UICollectionViewFlowLayout{
             //let cellWidth = floor(collectionView.bounds.width / 5) - 5 // *5列*

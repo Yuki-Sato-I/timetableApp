@@ -10,7 +10,7 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--Item-->
         <scene sceneID="tne-QT-ifu">
             <objects>
                 <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="newTableTimeApp" customModuleProvider="target" sceneMemberID="viewController">
@@ -35,13 +35,14 @@
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
+                    <tabBarItem key="tabBarItem" title="Item" id="EZF-bD-oSw"/>
                     <connections>
                         <outlet property="scrollView" destination="Lgc-eL-qf7" id="TD5-9q-LQh"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="361" y="107"/>
+            <point key="canvasLocation" x="-1090" y="107"/>
         </scene>
         <!--Start View Controller-->
         <scene sceneID="OWY-sf-bpS">
@@ -81,7 +82,7 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="早速使ってみる"/>
                                 <connections>
-                                    <segue destination="e3m-56-c8o" kind="presentation" identifier="startSegue" id="ZHM-5s-1Xd"/>
+                                    <segue destination="whq-s8-oKO" kind="presentation" identifier="startSegue" id="ZY1-iQ-fc7"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -98,12 +99,13 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ef9-gj-vV4" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1089" y="107"/>
+            <point key="canvasLocation" x="-364" y="107"/>
         </scene>
-        <!--Navigation Controller-->
+        <!--timetable-->
         <scene sceneID="xsP-Hd-mSj">
             <objects>
                 <navigationController id="e3m-56-c8o" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="timetable" image="timetableIcon" selectedImage="timetableIcon" id="rVo-Aj-IyV"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="3Lx-h8-GKJ">
                         <rect key="frame" x="0.0" y="20" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -125,7 +127,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" tag="2" contentMode="scaleToFill" fixedFrame="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="wCy-wD-UQN">
-                                <rect key="frame" x="0.0" y="66" width="375" height="534"/>
+                                <rect key="frame" x="0.0" y="66" width="375" height="552"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="1" minimumInteritemSpacing="1" id="xUz-mz-Y5h">
@@ -169,7 +171,7 @@
         <!--Cell View Controller-->
         <scene sceneID="KT1-rc-61o">
             <objects>
-                <viewController id="x0v-kc-nsO" customClass="CellViewController" customModule="newTableTimeApp" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController hidesBottomBarWhenPushed="YES" id="x0v-kc-nsO" customClass="CellViewController" customModule="newTableTimeApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="dQO-m6-d9W">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -205,7 +207,7 @@
                                 </userDefinedRuntimeAttributes>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="担当教員" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6fF-LD-DSa">
-                                <rect key="frame" x="0.0" y="127" width="187.5" height="21"/>
+                                <rect key="frame" x="0.0" y="127" width="188" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
@@ -235,7 +237,7 @@
                                 </userDefinedRuntimeAttributes>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LAr-oR-9mv">
-                                <rect key="frame" x="0.0" y="148" width="187.5" height="26"/>
+                                <rect key="frame" x="0.0" y="148" width="188" height="26"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="21"/>
                                 <nil key="textColor"/>
@@ -298,10 +300,39 @@
             </objects>
             <point key="canvasLocation" x="3348" y="106.59670164917542"/>
         </scene>
+        <!--Todo List Table View Controller-->
+        <scene sceneID="L2p-qE-5U2">
+            <objects>
+                <tableViewController id="893-y6-r3Q" customClass="TodoListTableViewController" customModule="newTableTimeApp" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="G8X-Nu-FLT">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="todoItemCell" id="gwq-R3-b2D">
+                                <rect key="frame" x="0.0" y="28" width="375" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="gwq-R3-b2D" id="wuZ-Mc-lp8">
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="893-y6-r3Q" id="yiM-3w-6NQ"/>
+                            <outlet property="delegate" destination="893-y6-r3Q" id="d92-YF-joA"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" id="9xg-qn-ag1"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="tij-iY-sjS" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1280.8" y="1191.4542728635683"/>
+        </scene>
         <!--Comment View Controller-->
         <scene sceneID="sEr-gr-yqa">
             <objects>
-                <viewController id="bdI-qK-xHE" customClass="CommentViewController" customModule="newTableTimeApp" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController hidesBottomBarWhenPushed="YES" id="bdI-qK-xHE" customClass="CommentViewController" customModule="newTableTimeApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="6C2-mc-BCK">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -339,12 +370,30 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ekt-DT-8Mx" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3348" y="846.9265367316342"/>
+            <point key="canvasLocation" x="4287.1999999999998" y="846.9265367316342"/>
+        </scene>
+        <!--Tab Bar Controller-->
+        <scene sceneID="QcW-sQ-SgG">
+            <objects>
+                <tabBarController id="whq-s8-oKO" customClass="tabBarController" customModule="newTableTimeApp" customModuleProvider="target" sceneMemberID="viewController">
+                    <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="3Mn-WR-975">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="49"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </tabBar>
+                    <connections>
+                        <segue destination="e3m-56-c8o" kind="relationship" relationship="viewControllers" id="ZcV-Mm-BW0"/>
+                        <segue destination="MAg-yH-KbS" kind="relationship" relationship="viewControllers" id="S3g-bW-FdN"/>
+                    </connections>
+                </tabBarController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="AL1-sA-rWG" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="343" y="107"/>
         </scene>
         <!--Comment Make View Controller-->
         <scene sceneID="0FZ-jL-vwp">
             <objects>
-                <viewController id="FrL-dp-Yct" customClass="CommentMakeViewController" customModule="newTableTimeApp" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController hidesBottomBarWhenPushed="YES" id="FrL-dp-Yct" customClass="CommentMakeViewController" customModule="newTableTimeApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="0sQ-oQ-fuM">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -437,12 +486,12 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Sjd-kN-teg" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3348" y="1548.5757121439281"/>
+            <point key="canvasLocation" x="4287.1999999999998" y="1548.5757121439281"/>
         </scene>
         <!--Comment Cell View Controller-->
         <scene sceneID="lgx-L7-cJN">
             <objects>
-                <viewController id="4vt-IT-Z52" customClass="CommentCellViewController" customModule="newTableTimeApp" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController hidesBottomBarWhenPushed="YES" id="4vt-IT-Z52" customClass="CommentCellViewController" customModule="newTableTimeApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="q8B-IP-r0K">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -456,7 +505,7 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <view contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="JSx-FN-ppk" customClass="CosmosView" customModule="Cosmos">
+                            <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="JSx-FN-ppk" customClass="CosmosView" customModule="Cosmos">
                                 <rect key="frame" x="52.5" y="150" width="270" height="30"/>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="number" keyPath="rating">
@@ -464,7 +513,7 @@
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                             </view>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" editable="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="S5N-iD-nhd">
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="S5N-iD-nhd">
                                 <rect key="frame" x="44" y="152.5" width="287" height="240"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <string key="text">Lorem ipsum dolor sit er elit lamet, cofwefwefweggwegvwegvwegwgewnsectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
@@ -509,12 +558,12 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ARz-hr-IEU" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4148" y="847"/>
+            <point key="canvasLocation" x="5087.1999999999998" y="846.9265367316342"/>
         </scene>
         <!--Config View Controller-->
         <scene sceneID="V8l-fK-vNb">
             <objects>
-                <viewController id="FNj-zR-28U" customClass="ConfigViewController" customModule="newTableTimeApp" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController hidesBottomBarWhenPushed="YES" id="FNj-zR-28U" customClass="ConfigViewController" customModule="newTableTimeApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="04X-Gm-4QR">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -617,9 +666,30 @@
             </objects>
             <point key="canvasLocation" x="4148" y="107"/>
         </scene>
+        <!--todo-->
+        <scene sceneID="lxj-vW-ETW">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="MAg-yH-KbS" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="todo" image="todoIcon" selectedImage="todoIcon" id="dRD-KM-BjZ"/>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="lsX-iS-zGq">
+                        <rect key="frame" x="0.0" y="20" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="893-y6-r3Q" kind="relationship" relationship="rootViewController" id="8XL-14-eWB"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="AOC-kk-015" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="341.60000000000002" y="1191.4542728635683"/>
+        </scene>
     </scenes>
     <resources>
         <image name="hukidasi" width="100" height="132.66667175292969"/>
         <image name="man" width="255" height="568"/>
+        <image name="timetableIcon" width="25" height="25"/>
+        <image name="todoIcon" width="25" height="25"/>
     </resources>
 </document>
