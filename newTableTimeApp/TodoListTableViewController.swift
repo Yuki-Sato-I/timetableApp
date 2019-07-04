@@ -30,7 +30,7 @@ class TodoListTableViewController: UITableViewController {
             itemArray = try! JSONDecoder().decode([Item].self, from: data as! Data)
         }
         //デバックアイテム
-        for i in 0..<10{
+        for i in 0..<3{
             let item1 = Item(className: String(i), done: false, title: String(i), content: "wwwww", limitDate: "2017/08/13")
             itemArray.append(item1)
         }
@@ -62,47 +62,43 @@ class TodoListTableViewController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        //var item = itemArray[indexPath.row]
-        // チェックマーク
-        //item.done = !item.done
-        //let encoder = JSONEncoder()
-        //if let encoded = try? encoder.encode(itemArray) {
-           // UserDefaults.standard.set(encoded, forKey: "todoListItem")
-        //}
-        // リロードしてUIに反映
-        //self.tableView.reloadData()
-        // セルを選択した時の背景の変化を遅くする
-       // tableView.deselectRow(at: indexPath, animated: true)
+        
     }
-    
-    //チェックマークができない！！！
     
     // ios 11以上が必要
     override func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
-        let doneAction = UIContextualAction(style: .normal, title: "done") { (action, view, completionHandler) in
-                                                completionHandler(true)
+        
+        let buttonTitle = itemArray[indexPath.row].done ? "not yet" : "done"
+        
+        let doneAction = UIContextualAction(style: .normal, title: buttonTitle) { (action, view, completionHandler) in completionHandler(true)
             print("done")
             var item = self.itemArray[indexPath.row]
             // チェックマーク
             item.done = !item.done
+            
+            self.itemArray[indexPath.row] = item
+            
+            let encoder = JSONEncoder()
+            if let encoded = try? encoder.encode(self.itemArray) {
+                UserDefaults.standard.set(encoded, forKey: "todoListItem")
+            }
+            self.tableView.reloadData()
         }
         
-        let deleteAction = UIContextualAction(style: .destructive, title: "delete") { (action, view, completionHandler) in
-                                                    completionHandler(true)
+        let deleteAction = UIContextualAction(style: .destructive, title: "delete") { (action, view, completionHandler) in completionHandler(true)
             print("delete")
             self.itemArray.remove(at: indexPath.row)
             
+            let encoder = JSONEncoder()
+            if let encoded = try? encoder.encode(self.itemArray) {
+                UserDefaults.standard.set(encoded, forKey: "todoListItem")
+            }
+
+            self.tableView.reloadData()
         }
         
         doneAction.backgroundColor = .blue
-        
-        let encoder = JSONEncoder()
-        if let encoded = try? encoder.encode(self.itemArray) {
-            UserDefaults.standard.set(encoded, forKey: "todoListItem")
-        }
-        
-        tableView.reloadData()
-        
+
         let configuration = UISwipeActionsConfiguration(actions: [doneAction, deleteAction])
         return configuration
     }
