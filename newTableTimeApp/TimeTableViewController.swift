@@ -16,6 +16,8 @@ class TimeTableViewController: UIViewController, UICollectionViewDataSource, UIC
    
     let date = ["月","火","水","木","金"]
     
+    var classNames:[String] = []
+    
     //選択されたcell番号
     var count = 0
     
@@ -71,6 +73,7 @@ class TimeTableViewController: UIViewController, UICollectionViewDataSource, UIC
                         }
                     }
                     classTitle.text = classInfo.title
+                    classNames.append(classInfo.title)
                 }else{
                     classTitle.text = "空き"
                 }
@@ -89,6 +92,9 @@ class TimeTableViewController: UIViewController, UICollectionViewDataSource, UIC
             }
             
         }
+        
+        print(classNames)
+        UserDefaults.standard.set(classNames, forKey: "classNames")
         
         return cell
         
@@ -164,16 +170,14 @@ class TimeTableViewController: UIViewController, UICollectionViewDataSource, UIC
             layout.sectionInset = UIEdgeInsets(top: 0, left: 0, bottom: 1, right: 0)
             layout.minimumLineSpacing = 1// アイテム間?
             layout.minimumInteritemSpacing = 1
-            
-            
         }
-        
+
     }
     
     //戻ってきたときの画面リロード
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        
+        classNames = []
         collectionView.reloadData()
         
     }

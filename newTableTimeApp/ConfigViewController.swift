@@ -20,6 +20,8 @@ class ConfigViewController: UIViewController, UIPickerViewDelegate, UIPickerView
     
     @IBOutlet var registerButton: UIButton!//登録ボタン
     
+    //var classNames:[String] = []
+    
     var toolbar: UIToolbar!
     var picker: UIPickerView = UIPickerView()
     
@@ -103,6 +105,10 @@ class ConfigViewController: UIViewController, UIPickerViewDelegate, UIPickerView
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        //if (UserDefaults.standard.object(forKey: "classNames") != nil){
+            //classNames = UserDefaults.standard.object(forKey: "classNames") as! [String]
+        //}
+        
         self.title = "授業設定"
         
         label.textAlignment = .center
@@ -179,6 +185,8 @@ class ConfigViewController: UIViewController, UIPickerViewDelegate, UIPickerView
                 if let encoded = try? encoder.encode(classInfo) {
                     UserDefaults.standard.set(encoded, forKey: String(self.selectedNumber))
                 }
+                //self.classNames.append(self.classTextField.text!)
+                //UserDefaults.standard.set(self.classNames, forKey: "classNames")
                 self.navigationController?.popViewController(animated: true)
                 print(classInfo)
             }

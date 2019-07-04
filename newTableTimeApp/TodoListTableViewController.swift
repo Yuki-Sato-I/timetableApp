@@ -19,35 +19,45 @@ class TodoListTableViewController: UITableViewController {
     }
     
     var itemArray: [Item] = []
+    var classNames: [String] = []
+    
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        classNames = UserDefaults.standard.object(forKey: "classNames") as! [String]
         self.title = "todo"
         //登録されているtodoを読み込み
         if (UserDefaults.standard.object(forKey: "todoListItem") != nil){
             let data = UserDefaults.standard.object(forKey: "todoListItem")
             itemArray = try! JSONDecoder().decode([Item].self, from: data as! Data)
         }
-        //デバックアイテム
-        for i in 0..<3{
-            let item1 = Item(className: String(i), done: false, title: String(i), content: "wwwww", limitDate: "2017/08/13")
-            itemArray.append(item1)
-        }
         
-
+        for _ in 0..<3{
+            itemArray.append(Item(className: "as", done: false, title: "aaa", content: "a", limitDate: "2019/4"))
+        }
     }
 
     // MARK: - Table view data source
 
     override func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
-        return 1
+        return classNames.count
+    }
+    
+    // Sectioのタイトル
+    override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        return classNames[section]
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return itemArray.count
+        var count = 0
+        for i in 0..<itemArray.count {
+            if itemArray[i].className == classNames[section] {
+                count += 1
+            }
+        }
+        return count
     }
 
     
@@ -103,4 +113,11 @@ class TodoListTableViewController: UITableViewController {
         return configuration
     }
     
+    //戻ってきたときの画面リロード
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.viewDidLoad()
+        tableView.reloadData()
+    }
+
 }
